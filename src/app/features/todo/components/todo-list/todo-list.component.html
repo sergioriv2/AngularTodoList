@@ -1,0 +1,10 @@
+<section>
+    <button (click)="cleanList()">Clean</button>
+    <ul>
+        @for (item of todoList; track $index) {
+        <li>
+            <todo-details [todoDetails]="item"></todo-details>
+        </li>
+        }
+    </ul>
+</section>

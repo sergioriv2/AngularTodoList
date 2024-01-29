@@ -1,0 +1,10 @@
+.todo-completed {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.span-thrash {
+    margin-left: 20px;
+    text-decoration: underline;
+    cursor: pointer;
+}

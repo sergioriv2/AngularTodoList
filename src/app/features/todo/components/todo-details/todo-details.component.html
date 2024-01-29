@@ -1,0 +1,23 @@
+<div>
+    <span
+        class="todo-details"
+        (click)="updateTodoOnClick()"
+        [ngClass]="{ 'todo-completed': todoDetails?.isComplete }"
+    >
+        <span>
+            <strong> ID: {{ todoDetails?.id }}</strong>
+        </span>
+        <span> {{ todoDetails?.description }}</span>
+    </span>
+    <span>
+        @if (todoDetails?.isInTrash) {
+        <span class="span-thrash">
+            <strong>Restore</strong>
+        </span>
+        } @else {
+        <span class="span-thrash">
+            <strong>Move to thrash</strong>
+        </span>
+        }
+    </span>
+</div>
