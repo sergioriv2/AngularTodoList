@@ -1,0 +1,13 @@
+.todo-list-container{ 
+    /* background-color: aliceblue; */
+    min-width: 250px;
+    max-width: 500px;
+    min-height: 120px;
+    margin: 10px 20px;
+}
+
+.todo-list-container ul {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+}

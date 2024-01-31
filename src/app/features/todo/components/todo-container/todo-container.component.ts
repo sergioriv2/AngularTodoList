@@ -3,10 +3,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TodoService } from '../../../../services/facade/todo.service';
 import {
     ITodoDetail,
-    ITodoList,
+    ITodoLists,
 } from '../../interfaces/todo-details.interface';
 import { Subscription } from 'rxjs';
 import { generateRandomNumber } from '../../../../helpers/generate-random-number';
+import { TodoListTypes } from '../../../../common/enums/todo-list-types.enum';
 
 @Component({
     selector: 'todo-container',
@@ -17,24 +18,25 @@ export class TodoContainerComponent {
     todosAddForm: FormGroup;
     newTodo: ITodoDetail | undefined;
     // Todo's List Properties
-    todoList!: ITodoList;
-    trashTodoList!: ITodoList;
+    todoList!: ITodoLists;
+    todoListTypes = TodoListTypes;
 
-    private todoSubscription: Subscription;
+    private todoListsSubscription: Subscription;
 
     constructor(private readonly todoService: TodoService) {
         this.todoList = {
-            list: [],
+            todoList: [],
+            trashList: [],
         };
-        this.trashTodoList = {
-            list: [],
-        };
+
         // this.trashTodoList.list = [];
 
-        this.todoSubscription = this.todoService
-            .getTodoObservable()
+        this.todoListsSubscription = this.todoService
+            .getTodoListsObservable()
             .subscribe((items) => {
-                this.todoList.list = items;
+                // console.log(JSON.stringify(items));
+                this.todoList.todoList = items?.todoList;
+                this.todoList.trashList = items?.trashList;
             });
 
         this.todosAddForm = new FormGroup({
@@ -48,16 +50,22 @@ export class TodoContainerComponent {
     unloadNotification($event: any) {
         window.localStorage.setItem(
             'todo-list',
-            JSON.stringify(this.todoList.list),
+            JSON.stringify(this.todoList.todoList),
+        );
+
+        window.localStorage.setItem(
+            'todo-trash-list',
+            JSON.stringify(this.todoList.trashList),
         );
     }
 
     async ngOnInit() {
-        this.todoList.list = await this.todoService.getTodosFromLocalStorage();
+        this.todoList.todoList =
+            await this.todoService.getTodosFromLocalStorage();
     }
 
     ngOnDestroy() {
-        this.todoSubscription.unsubscribe();
+        this.todoListsSubscription.unsubscribe();
     }
 
     get description() {

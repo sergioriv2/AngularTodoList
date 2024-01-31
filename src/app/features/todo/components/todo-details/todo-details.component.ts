@@ -9,7 +9,7 @@ import { TodoService } from '../../../../services/facade/todo.service';
 })
 export class TodoDetailsComponent {
     @Input()
-    todoDetails: ITodoDetail | undefined;
+    todoDetails!: ITodoDetail;
 
     constructor(private readonly todoService: TodoService) {}
 
@@ -17,5 +17,10 @@ export class TodoDetailsComponent {
         if (this.todoDetails?.id === undefined) return;
         this.todoDetails.isComplete = !this.todoDetails.isComplete;
         await this.todoService.updateTodoList(this.todoDetails);
+    }
+
+    async handleTodoThrashOnClick() {
+        if (this.todoDetails?.id === undefined) return;
+        await this.todoService.handleTodoTrash(this.todoDetails);
     }
 }

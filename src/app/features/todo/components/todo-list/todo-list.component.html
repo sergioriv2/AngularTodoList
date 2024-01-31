@@ -1,5 +1,19 @@
-<section>
-    <button (click)="cleanList()">Clean</button>
+<section class="todo-list-container">
+    <button
+        [disabled]="todoList.length === 0"
+        (click)="cleanList()"
+        *ngIf="todoType === todoListTypes.Trash"
+    >
+        Clean
+    </button>
+    <button
+        [disabled]="todoList.length === 0"
+        (click)="restoreTodosInTrash()"
+        *ngIf="todoType === todoListTypes.Trash"
+    >
+        Restore All
+    </button>
+
     <ul>
         @for (item of todoList; track $index) {
         <li>

@@ -1,23 +1,26 @@
-<div>
-    <span
-        class="todo-details"
-        (click)="updateTodoOnClick()"
-        [ngClass]="{ 'todo-completed': todoDetails?.isComplete }"
-    >
-        <span>
-            <strong> ID: {{ todoDetails?.id }}</strong>
-        </span>
-        <span> {{ todoDetails?.description }}</span>
-    </span>
-    <span>
-        @if (todoDetails?.isInTrash) {
-        <span class="span-thrash">
-            <strong>Restore</strong>
-        </span>
-        } @else {
-        <span class="span-thrash">
-            <strong>Move to thrash</strong>
-        </span>
-        }
-    </span>
+<div class="todo-details-container">
+    <div class="todo-details-body">
+        <div class="todo-details" (click)="updateTodoOnClick()">
+            <p class="todo-details-id">
+                {{ todoDetails.id }}
+            </p>
+            <p
+                class="todo-details-description"
+                [ngClass]="{ 'todo-completed': todoDetails.isComplete }"
+            >
+                {{ todoDetails.description }}
+            </p>
+        </div>
+        <div
+            class="todo-details-trash-handler"
+            (click)="handleTodoThrashOnClick()"
+        >
+            @if (todoDetails.isInTrash) {
+            <p class="span-thrash">Restore</p>
+            } @else {
+            <p class="span-thrash">Move to trash</p>
+            }
+        </div>
+    </div>
+    <!-- <div class="todo-details-body-triangle-right"></div> -->
 </div>

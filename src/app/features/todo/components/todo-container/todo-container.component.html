@@ -1,13 +1,17 @@
-<div>
-    <form [formGroup]="todosAddForm" (ngSubmit)="onTodosAddSubmit()">
+<div class="list-main-container">
+    <form
+        class="list-form"
+        [formGroup]="todosAddForm"
+        (ngSubmit)="onTodosAddSubmit()"
+    >
         <input
             formControlName="description"
-            placeholder="Description goes here..."
+            placeholder="Description..."
             type="text"
             name="description"
             required
         />
-        <div
+        <!-- <div
             class="alert-danger"
             *ngIf="
                 description?.invalid &&
@@ -17,10 +21,15 @@
             <div *ngIf="description?.errors?.['required']">
                 <p>Description is required</p>
             </div>
-        </div>
-        <button type="submit">Create</button>
+        </div> -->
+        <button type="submit"></button>
     </form>
-    <p>Form Status: {{ todosAddForm.status }}</p>
-    <todo-list [todoList]="todoList.list"></todo-list>
-    <todo-list [todoList]="trashTodoList.list"></todo-list>
+    <todo-list
+        [todoList]="todoList.todoList"
+        [todoType]="todoListTypes.Todo"
+    ></todo-list>
+    <todo-list
+        [todoList]="todoList.trashList"
+        [todoType]="todoListTypes.Trash"
+    ></todo-list>
 </div>

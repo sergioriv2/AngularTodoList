@@ -5,7 +5,7 @@ export interface ITodoDetail {
     isInTrash: boolean;
 }
 
-export interface ITodoList {
-    // id: number;
-    list: ITodoDetail[];
+export interface ITodoLists {
+    trashList: ITodoDetail[];
+    todoList: ITodoDetail[];
 }

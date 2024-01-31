@@ -1,13 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
 ::ng-deep :root {
     --white: #DDE6ED;
     --dark:  #040D12;
     --dark-green: #183D3D;
     --medium-green: #5C8374;
     --light-green: #93B1A6;
-    box-sizing: border-box;
 }
 
-html {
+main {
+    font-family: 'Helvetica', sans-serif;
     background-color: var(--dark);
+    color: var(--white);
 }
