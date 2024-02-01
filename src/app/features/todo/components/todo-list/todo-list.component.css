@@ -5,6 +5,11 @@
     margin: 10px 20px;
 }
 
+.list-name{
+    font-weight: 300;
+    font-size: 30px;
+}
+
 .list-buttons-container { 
     min-width: 120px;
     max-width: 170px;

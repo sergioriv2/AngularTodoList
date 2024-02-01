@@ -1,5 +1,6 @@
 .list-main-container {
     max-width: 500px;
+    min-height: 600px;
     margin: 0 auto;
 }
 
@@ -10,7 +11,13 @@
     margin: 20px;
 }
 
-.list-form input {
+.list-form input,
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active,
+input:hover, /* Añadiendo el estado hover */
+input:focus { /* Añadiendo el estado focus */
     background-color: var(--dark);
     color: var(--white);
     outline: none;
@@ -19,8 +26,22 @@
     height: 40px;
     border-radius: 25px;
     padding-left: 20px;
+    
 }
 
+.list-form input {
+    font-weight: 400;
+}
+
+.list-message-placeholder {
+    text-align: center;
+    font-weight: 100;
+    min-height: 200px;
+    color: var(--blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .list-form button[type=submit] {
     background-color: transparent;

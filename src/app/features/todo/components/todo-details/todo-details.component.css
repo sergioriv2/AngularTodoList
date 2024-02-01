@@ -14,12 +14,13 @@
 }
 
 .todo-details-id {
-    color: var(--medium-green);
+    color:#B9B4C7;
     font-size: 12px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     width: 25%;
+    font-weight: 300;
 }
 
 .todo-details-id::before {
@@ -52,6 +53,8 @@
     display: inline;
     overflow-wrap: break-word;
     hyphens: auto;
+    font-weight: 100;
+    font-size: 16px;
     /* inline-size: min-content; */
 }
 
@@ -90,21 +93,31 @@
 .orange-border {
     border-color: var(--orange) !important;
 }
+
 .red-border {
     border-color: var(--red) !important;
 }
+
 .yellow-border {
     border-color: var(--yellow) !important;
 }
+
 .turquoise-border {
     border-color: var(--turquoise) !important;
 }
+
 .pink-border {
     border-color: var(--pink) !important;
 }
+
 .blue-border {
     border-color: var(--blue) !important;
 }
+
 .green-border {
     border-color: var(--green) !important;
+}
+
+.gray-border {
+    border-color: var(--gray) !important;
 }

@@ -39,7 +39,11 @@ export class TodoContainerComponent {
             });
 
         this.todosAddForm = new FormGroup({
-            description: new FormControl('', [Validators.required]),
+            description: new FormControl('', [
+                Validators.required,
+                Validators.minLength(10),
+                Validators.maxLength(255),
+            ]),
         });
     }
 

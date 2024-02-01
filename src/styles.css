@@ -1,19 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
-::ng-deep :root {
+:root {
     --white: #DDE6ED;
     --dark:  #040D12;
     --dark-green: #183D3D;
     --medium-green: #5C8374;
     --light-green: #93B1A6;
-    /* Border Colors */
     --red: #D04848;
     --orange: #FC6736;
     --yellow: #FDE767;
-    --blue: #0B60B0;
+    --blue: #40A2E3;
     --purple: #6C22A6;
     --turquoise: #37B5B6;
     --pink: #D63484;
     --green: #65B741;
+    --gray: #5C5470;
     box-sizing: border-box;
 }
 

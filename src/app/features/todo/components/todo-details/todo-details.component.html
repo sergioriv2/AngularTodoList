@@ -1,4 +1,10 @@
-<div [class]="['todo-details-container', todoDetails.color].join(' ')">
+<div
+    [class]="
+        todoDetails.isInTrash
+            ? 'todo-details-container gray-border'
+            : ['todo-details-container', todoDetails.color].join(' ')
+    "
+>
     <div class="todo-details-body">
         <div class="todo-details" (click)="updateTodoOnClick()">
             <p class="todo-details-id">

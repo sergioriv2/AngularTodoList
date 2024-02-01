@@ -1,13 +1,15 @@
-::ng-deep :root {
-    --white: #DDE6ED;
-    --dark:  #040D12;
-    --dark-green: #183D3D;
-    --medium-green: #5C8374;
-    --light-green: #93B1A6;
-}
+
 
 main {
-    font-family: 'Helvetica', sans-serif;
+    font-family: 'Roboto', sans-serif;
     background-color: var(--dark);
     color: var(--white);
+}
+
+button {
+    cursor: pointer;
+}
+
+form {
+    font-family: 'Roboto', sans-serif;
 }

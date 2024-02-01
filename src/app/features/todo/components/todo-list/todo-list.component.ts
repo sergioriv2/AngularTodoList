@@ -14,6 +14,9 @@ import { TodoListTypes } from '../../../../common/enums/todo-list-types.enum';
 })
 export class TodoListComponent {
     @Input()
+    listName!: string;
+
+    @Input()
     todoList: ITodoDetail[] = [];
 
     @Input()

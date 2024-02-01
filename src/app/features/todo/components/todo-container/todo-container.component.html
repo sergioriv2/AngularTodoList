@@ -28,15 +28,20 @@
         *ngIf="
             todoList.todoList.length === 0 && todoList.trashList.length === 0
         "
+        class="list-message-placeholder"
     >
         <p>There's nothing to show for now... Let's write ideas!</p>
     </div>
-    <todo-list
-        [todoList]="todoList.todoList"
-        [todoType]="todoListTypes.Todo"
-    ></todo-list>
-    <todo-list
-        [todoList]="todoList.trashList"
-        [todoType]="todoListTypes.Trash"
-    ></todo-list>
+    <div *ngIf="todoList.todoList.length > 0 || todoList.trashList.length > 0">
+        <todo-list
+            [todoList]="todoList.todoList"
+            [todoType]="todoListTypes.Todo"
+            [listName]="'Your to do list'"
+        ></todo-list>
+        <todo-list
+            [todoList]="todoList.trashList"
+            [todoType]="todoListTypes.Trash"
+            [listName]="'Your trash'"
+        ></todo-list>
+    </div>
 </div>
