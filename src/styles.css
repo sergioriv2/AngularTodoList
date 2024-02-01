@@ -5,6 +5,15 @@
     --dark-green: #183D3D;
     --medium-green: #5C8374;
     --light-green: #93B1A6;
+    /* Border Colors */
+    --red: #D04848;
+    --orange: #FC6736;
+    --yellow: #FDE767;
+    --blue: #0B60B0;
+    --purple: #6C22A6;
+    --turquoise: #37B5B6;
+    --pink: #D63484;
+    --green: #65B741;
     box-sizing: border-box;
 }
 

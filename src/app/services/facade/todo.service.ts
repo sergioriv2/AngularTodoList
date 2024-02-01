@@ -5,6 +5,7 @@ import {
 } from '../../features/todo/interfaces/todo-details.interface';
 import { BehaviorSubject } from 'rxjs';
 import { SetTodoListDto } from '../../features/todo/dtos/todo-details.dto';
+import { TodoColors } from '../../common/enums/todo-colors.enum';
 
 @Injectable()
 export class TodoService {
@@ -22,15 +23,19 @@ export class TodoService {
         return this.todoSubject.asObservable();
     }
 
+    generateRandomColor() {
+        const todoColorsArray = Object.values(TodoColors);
+
+        return todoColorsArray[
+            Math.floor(Math.random() * todoColorsArray.length)
+        ].toString();
+    }
+
     async setTodoList(todoListToSet: SetTodoListDto): Promise<boolean> {
         this.todoList = {
             ...this.todoList,
             ...todoListToSet,
         };
-
-        console.log({
-            todoList: this.todoList,
-        });
 
         this.todoSubject.next(this.todoList);
         return Promise.resolve(true);

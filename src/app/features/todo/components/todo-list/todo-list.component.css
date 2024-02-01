@@ -1,9 +1,24 @@
 .todo-list-container{ 
-    /* background-color: aliceblue; */
     min-width: 250px;
     max-width: 500px;
     min-height: 120px;
     margin: 10px 20px;
+}
+
+.list-buttons-container { 
+    min-width: 120px;
+    max-width: 170px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.list-button {
+    outline: none;
+    border: 2px solid var(--dark-green);
+    padding: 5px 10px;
+    background-color: transparent;
+    color: var(--light);
+    border-radius: 5px;
 }
 
 .todo-list-container ul {
@@ -11,3 +26,4 @@
     margin: 0 auto;
     padding: 0;
 }
+

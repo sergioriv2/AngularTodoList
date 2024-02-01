@@ -1,24 +1,30 @@
 <section class="todo-list-container">
-    <button
-        [disabled]="todoList.length === 0"
-        (click)="cleanList()"
-        *ngIf="todoType === todoListTypes.Trash"
-    >
-        Clean
-    </button>
-    <button
-        [disabled]="todoList.length === 0"
-        (click)="restoreTodosInTrash()"
-        *ngIf="todoType === todoListTypes.Trash"
-    >
-        Restore All
-    </button>
+    <div class="list-buttons-container">
+        <button
+            [disabled]="todoList.length === 0"
+            (click)="cleanList()"
+            *ngIf="todoType === todoListTypes.Trash && todoList.length > 0"
+            class="list-button clean-trash-button"
+        >
+            Clean
+        </button>
+        <button
+            class="list-button restore-thrash-button"
+            [disabled]="todoList.length === 0"
+            (click)="restoreTodosInTrash()"
+            *ngIf="todoType === todoListTypes.Trash && todoList.length > 0"
+        >
+            Restore All
+        </button>
+    </div>
 
-    <ul>
-        @for (item of todoList; track $index) {
-        <li>
-            <todo-details [todoDetails]="item"></todo-details>
-        </li>
-        }
-    </ul>
+    <div>
+        <ul>
+            @for (item of todoList; track $index) {
+            <li>
+                <todo-details [todoDetails]="item"></todo-details>
+            </li>
+            }
+        </ul>
+    </div>
 </section>

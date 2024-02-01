@@ -16,7 +16,6 @@ import { TodoListTypes } from '../../../../common/enums/todo-list-types.enum';
 })
 export class TodoContainerComponent {
     todosAddForm: FormGroup;
-    newTodo: ITodoDetail | undefined;
     // Todo's List Properties
     todoList!: ITodoLists;
     todoListTypes = TodoListTypes;
@@ -40,9 +39,7 @@ export class TodoContainerComponent {
             });
 
         this.todosAddForm = new FormGroup({
-            description: new FormControl(this.newTodo?.description, [
-                Validators.required,
-            ]),
+            description: new FormControl('', [Validators.required]),
         });
     }
 
@@ -74,18 +71,22 @@ export class TodoContainerComponent {
 
     async onTodosAddSubmit() {
         if (this.todosAddForm.valid) {
-            this.newTodo = {
+            const newTodo: ITodoDetail = {
                 id: generateRandomNumber(),
                 description:
                     this.todosAddForm.controls['description'].value ?? '',
                 isComplete: false,
                 isInTrash: false,
+                color: this.todoService.generateRandomColor(),
             };
 
-            await this.todoService.addTodo(this.newTodo);
+            console.log({
+                newTodo,
+            });
+
+            await this.todoService.addTodo(newTodo);
 
             this.todosAddForm.reset();
-            this.newTodo = undefined;
         }
     }
 }

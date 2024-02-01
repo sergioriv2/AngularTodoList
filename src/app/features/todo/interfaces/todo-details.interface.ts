@@ -3,6 +3,7 @@ export interface ITodoDetail {
     description: string;
     isComplete: boolean;
     isInTrash: boolean;
+    color: string;
 }
 
 export interface ITodoLists {

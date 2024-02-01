@@ -24,6 +24,13 @@
         </div> -->
         <button type="submit"></button>
     </form>
+    <div
+        *ngIf="
+            todoList.todoList.length === 0 && todoList.trashList.length === 0
+        "
+    >
+        <p>There's nothing to show for now... Let's write ideas!</p>
+    </div>
     <todo-list
         [todoList]="todoList.todoList"
         [todoType]="todoListTypes.Todo"

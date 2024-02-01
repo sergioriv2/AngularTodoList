@@ -6,7 +6,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid var(--dark-green);
+    border-style: solid;
+    border-width: 1px;
     border-radius: 3px;
     margin: 15px 0;
     padding: 20px 0;
@@ -55,7 +56,7 @@
 }
 
 .todo-details-trash-handler {
-    height: 20px;
+    height: 35px;
     width: 150px;
     margin-right: 10px;
 }
@@ -74,7 +75,36 @@
     transition: 0.5s;
 } */
 
-.span-thrash {
+.trash-handler {
     cursor: pointer;
-    color: var(--light-green);
+    color: var(--light);
+    background-color: rgb(34, 34, 34);
+    border-radius: 3px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.orange-border {
+    border-color: var(--orange) !important;
+}
+.red-border {
+    border-color: var(--red) !important;
+}
+.yellow-border {
+    border-color: var(--yellow) !important;
+}
+.turquoise-border {
+    border-color: var(--turquoise) !important;
+}
+.pink-border {
+    border-color: var(--pink) !important;
+}
+.blue-border {
+    border-color: var(--blue) !important;
+}
+.green-border {
+    border-color: var(--green) !important;
 }
