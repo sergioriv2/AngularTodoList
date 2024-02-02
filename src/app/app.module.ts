@@ -3,6 +3,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { LoginModule } from './features/login/login.module';
 import { TodoModule } from './features/todo/todo.module';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
     declarations: [AppComponent],
@@ -15,5 +16,8 @@ import { TodoModule } from './features/todo/todo.module';
         TodoModule,
     ],
     bootstrap: [AppComponent],
+    providers: [
+      provideAnimationsAsync()
+    ],
 })
 export class AppModule {}

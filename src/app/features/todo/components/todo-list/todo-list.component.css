@@ -1,13 +1,22 @@
-.todo-list-container{ 
-    min-width: 250px;
+.todo-list-container{
+    min-width: 300px;
     max-width: 500px;
-    min-height: 120px;
-    margin: 10px 20px;
+    min-height: 140px;
+    margin-bottom: 50px;
+}
+
+.todo-list-head {
+    min-height: 100px;
 }
 
 .list-name{
     font-weight: 300;
     font-size: 30px;
+    margin: 0 0 20px 0;
+}
+
+.list-name p {
+    margin: 0;
 }
 
 .list-buttons-container { 
@@ -18,12 +27,9 @@
 }
 
 .list-button {
-    outline: none;
-    border: 2px solid var(--dark-green);
     padding: 5px 10px;
-    background-color: transparent;
-    color: var(--light);
-    border-radius: 5px;
+    /* background-color: var(--dark-green) !important; */
+    /* color: var(--light) !important; */
 }
 
 .todo-list-container ul {

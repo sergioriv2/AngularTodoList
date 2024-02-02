@@ -1,11 +1,16 @@
-import { Component, Input } from '@angular/core';
 import {
-    ITodoDetail,
-    ITodoLists,
-} from '../../interfaces/todo-details.interface';
+    Component,
+    Input,
+    OnChanges,
+    OnInit,
+    SimpleChanges,
+} from '@angular/core';
+import { ITodoDetail } from '../../interfaces/todo-details.interface';
 import { TodoService } from '../../../../services/facade/todo.service';
-import { Subscription } from 'rxjs';
 import { TodoListTypes } from '../../../../common/enums/todo-list-types.enum';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { TodoCleanDialogComponent } from '../todo-clean-dialog/todo-clean-dialog.component';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'todo-list',
@@ -21,9 +26,17 @@ export class TodoListComponent {
 
     @Input()
     todoType!: TodoListTypes;
+
     todoListTypes = TodoListTypes;
 
-    constructor(private readonly todoService: TodoService) {
+    constructor(
+        private cleanTrashDialog: MatDialog,
+        private readonly todoService: TodoService,
+    ) {
+        this.transformTodoList();
+    }
+
+    transformTodoList() {
         this.todoList = this.todoList.map((el) => {
             return {
                 ...el,
@@ -32,18 +45,22 @@ export class TodoListComponent {
         });
     }
 
-    async cleanList() {
-        if (this.todoType === TodoListTypes.Todo) {
-            await this.todoService.setTodoList({
-                todoList: [],
-            });
-            this.todoList = [];
-        } else {
-            await this.todoService.setTodoList({
-                trashList: [],
-            });
-            this.todoList = [];
-        }
+    openTrashDialog() {
+        const dialogConfig = new MatDialogConfig();
+        dialogConfig.disableClose = true;
+        dialogConfig.autoFocus = true;
+
+        const dialogRef = this.cleanTrashDialog.open(TodoCleanDialogComponent, {
+            data: {
+                todoType: this.todoType,
+                todoList: this.todoList,
+            },
+        });
+        dialogRef.afterClosed().subscribe((result: ITodoDetail[]) => {
+            if (result) {
+                this.todoList = result;
+            }
+        });
     }
 
     async restoreTodosInTrash() {

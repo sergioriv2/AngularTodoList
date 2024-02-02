@@ -1,0 +1,66 @@
+<h2 mat-dialog-title>Create new Todo Item</h2>
+<mat-dialog-content [formGroup]="form">
+    <mat-form-field>
+        <span
+            class="text-danger"
+            *ngIf="
+                form.get('descriptions')?.errors &&
+                form.get('descriptions')?.hasError('required')
+            "
+            >*</span
+        >
+        <textarea
+            matInput
+            formControlName="description"
+            placeholder="Todo Description"
+            name="description"
+            required
+        >
+        </textarea>
+    </mat-form-field>
+    <div
+        *ngIf="
+            form.get('description')?.invalid &&
+            form.get('description')?.errors &&
+            (form.get('description')?.dirty || form.get('description')?.touched)
+        "
+    >
+        <small
+            class="text-danger"
+            *ngIf="form.get('description')?.hasError('required')"
+        >
+            This field is required.
+        </small>
+        <small
+            class="text-danger"
+            *ngIf="form.get('description')?.hasError('minlength')"
+        >
+            The minimum length for this field is
+            {{
+                    form.get('description')?.errors?.['minlength']?.requiredLength
+            }}
+            characters.
+        </small>
+        <small
+            class="text-danger"
+            *ngIf="form.get('description')?.hasError('maxlength')"
+        >
+            The maximum length for this field is
+            {{
+                    form.get('description')?.errors?.['maxlength']?.requiredLength
+            }}
+            characters.
+        </small>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button (click)="close()">Close</button>
+    <button
+        mat-raised-button
+        color="primary"
+        [disabled]="form.invalid"
+        (click)="save()"
+    >
+        Save
+    </button>
+</mat-dialog-actions>

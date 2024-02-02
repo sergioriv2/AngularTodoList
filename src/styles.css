@@ -1,22 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
     --white: #DDE6ED;
-    --dark:  #040D12;
+    --dark:  #191919;
     --dark-green: #183D3D;
     --medium-green: #5C8374;
     --light-green: #93B1A6;
-    --red: #D04848;
+    --red: #B80000;
     --orange: #FC6736;
-    --yellow: #FDE767;
+    --yellow: #FF9800;
     --blue: #40A2E3;
     --purple: #6C22A6;
     --turquoise: #37B5B6;
     --pink: #D63484;
     --green: #65B741;
     --gray: #5C5470;
+    --dark-gray: #2C3333;
+    --dark-2: #03001C;
+}
+
+* {
+
     box-sizing: border-box;
 }
 
 html {
     background-color: var(--dark);
 }
+
+html, body { height: 100%; }
+
+.text-danger {
+    color: var(--red);
+}
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

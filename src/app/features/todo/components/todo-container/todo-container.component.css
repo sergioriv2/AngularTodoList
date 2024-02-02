@@ -1,32 +1,65 @@
-.list-main-container {
-    max-width: 500px;
+.todo-main-container {
+    max-width: 100%;
     min-height: 600px;
     margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.todo-main-create-button {
+    max-width: 300px;
+    margin-bottom: 30px;
+}
+
+.list-main-body {
+    display: flex;
+    max-width: 300px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 0 0 20px 0;
+}
+
+@media screen and (min-width: 1024px) {
+    .list-main-body {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 60%;
+        max-width: none;
+    }
+
+    .todo-main-create-button {
+        width: 60%;
+        max-width: none;
+    }
 }
 
 .list-form{
+    min-width: 300px;
     display: flex;
-    min-width: 340px;
-    position: relative;
-    margin: 20px;
+    flex-direction: row;
+    margin: 20px 0;
 }
 
-.list-form input,
-input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active,
-input:hover, /* Añadiendo el estado hover */
-input:focus { /* Añadiendo el estado focus */
-    background-color: var(--dark);
-    color: var(--white);
+@media screen and(min-width: 1024px) {
+    .list-form{
+        background-color: red;
+    }
+}
+
+.list-form input { /* Añadiendo el estado focus */
+    background-color: var(--white);
+    border: 3px solid var(--dark-green);
+    color: var(--dark);
     outline: none;
-    border: 1px solid var(--light-green);
-    width: 100%;
+    min-width: 180;
     height: 40px;
-    border-radius: 25px;
+    border-radius: 100px;
+    font-weight: 400;
     padding-left: 20px;
-    
+    margin-right: 20px;
 }
 
 .list-form input {
@@ -43,28 +76,5 @@ input:focus { /* Añadiendo el estado focus */
     align-items: center;
 }
 
-.list-form button[type=submit] {
-    background-color: transparent;
-    outline: none;
-    border: 1px solid var(--light-green);
-    height: 30px;
-    width: 30px;
-    border-radius: 50px;
-    position: absolute;
-    top: 50%;
-    right: 9px;
-    margin: 0;
-    padding: 0;
-    transform: translate(0%, -50%);
-}
 
-.list-form button[type=submit]:hover {
-    background-color: var(--light-green);
-    border: 2px solid var(--dark);
-    cursor: pointer;
-}
 
-.alert-danger {
-    color: red;
-
-}

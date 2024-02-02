@@ -1,13 +1,10 @@
 import { Component, HostListener } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TodoService } from '../../../../services/facade/todo.service';
-import {
-    ITodoDetail,
-    ITodoLists,
-} from '../../interfaces/todo-details.interface';
+import { ITodoLists } from '../../interfaces/todo-details.interface';
 import { Subscription } from 'rxjs';
-import { generateRandomNumber } from '../../../../helpers/generate-random-number';
 import { TodoListTypes } from '../../../../common/enums/todo-list-types.enum';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { TodoFormDialogComponent } from '../todo-form-dialog/todo-form-dialog.component';
 
 @Component({
     selector: 'todo-container',
@@ -15,14 +12,16 @@ import { TodoListTypes } from '../../../../common/enums/todo-list-types.enum';
     styleUrl: './todo-container.component.css',
 })
 export class TodoContainerComponent {
-    todosAddForm: FormGroup;
     // Todo's List Properties
     todoList!: ITodoLists;
     todoListTypes = TodoListTypes;
 
     private todoListsSubscription: Subscription;
 
-    constructor(private readonly todoService: TodoService) {
+    constructor(
+        private dialog: MatDialog,
+        private readonly todoService: TodoService,
+    ) {
         this.todoList = {
             todoList: [],
             trashList: [],
@@ -33,22 +32,15 @@ export class TodoContainerComponent {
         this.todoListsSubscription = this.todoService
             .getTodoListsObservable()
             .subscribe((items) => {
-                // console.log(JSON.stringify(items));
-                this.todoList.todoList = items?.todoList;
-                this.todoList.trashList = items?.trashList;
+                if (items) {
+                    this.todoList.todoList = items?.todoList;
+                    this.todoList.trashList = items?.trashList;
+                }
             });
-
-        this.todosAddForm = new FormGroup({
-            description: new FormControl('', [
-                Validators.required,
-                Validators.minLength(10),
-                Validators.maxLength(255),
-            ]),
-        });
     }
 
-    @HostListener('window:beforeunload', ['$event'])
-    unloadNotification($event: any) {
+    @HostListener('window:beforeunload')
+    unloadNotification() {
         window.localStorage.setItem(
             'todo-list',
             JSON.stringify(this.todoList.todoList),
@@ -69,28 +61,14 @@ export class TodoContainerComponent {
         this.todoListsSubscription.unsubscribe();
     }
 
-    get description() {
-        return this.todosAddForm.get('description');
-    }
+    // get description() {
+    //     return this.todosAddForm.get('description');
+    // }
 
-    async onTodosAddSubmit() {
-        if (this.todosAddForm.valid) {
-            const newTodo: ITodoDetail = {
-                id: generateRandomNumber(),
-                description:
-                    this.todosAddForm.controls['description'].value ?? '',
-                isComplete: false,
-                isInTrash: false,
-                color: this.todoService.generateRandomColor(),
-            };
-
-            console.log({
-                newTodo,
-            });
-
-            await this.todoService.addTodo(newTodo);
-
-            this.todosAddForm.reset();
-        }
+    openDialog() {
+        const dialogConfig = new MatDialogConfig();
+        dialogConfig.disableClose = true;
+        dialogConfig.autoFocus = true;
+        this.dialog.open(TodoFormDialogComponent, dialogConfig);
     }
 }

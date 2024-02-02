@@ -4,6 +4,7 @@ export interface ITodoDetail {
     isComplete: boolean;
     isInTrash: boolean;
     color: string;
+    createdAt: Date;
 }
 
 export interface ITodoLists {

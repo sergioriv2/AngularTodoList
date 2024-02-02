@@ -6,6 +6,9 @@
     "
 >
     <div class="todo-details-body">
+        <div class="todo-details-date">
+            <p>{{ getDateString() }}</p>
+        </div>
         <div class="todo-details" (click)="updateTodoOnClick()">
             <p class="todo-details-id">
                 {{ todoDetails.id }}

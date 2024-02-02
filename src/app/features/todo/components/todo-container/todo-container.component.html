@@ -1,29 +1,14 @@
-<div class="list-main-container">
-    <form
+<div class="todo-main-container">
+    <!-- <form
         class="list-form"
         [formGroup]="todosAddForm"
         (ngSubmit)="onTodosAddSubmit()"
     >
-        <input
-            formControlName="description"
-            placeholder="Description..."
-            type="text"
-            name="description"
-            required
-        />
-        <!-- <div
-            class="alert-danger"
-            *ngIf="
-                description?.invalid &&
-                (description?.dirty || description?.touched)
-            "
-        >
-            <div *ngIf="description?.errors?.['required']">
-                <p>Description is required</p>
-            </div>
-        </div> -->
-        <button type="submit"></button>
-    </form>
+   
+    </form> -->
+    <div class="todo-main-create-button">
+        <button mat-raised-button (click)="openDialog()">Create Todo</button>
+    </div>
     <div
         *ngIf="
             todoList.todoList.length === 0 && todoList.trashList.length === 0
@@ -32,16 +17,19 @@
     >
         <p>There's nothing to show for now... Let's write ideas!</p>
     </div>
-    <div *ngIf="todoList.todoList.length > 0 || todoList.trashList.length > 0">
+    <div
+        *ngIf="todoList.todoList.length > 0 || todoList.trashList.length > 0"
+        class="list-main-body"
+    >
         <todo-list
             [todoList]="todoList.todoList"
             [todoType]="todoListTypes.Todo"
-            [listName]="'Your to do list'"
+            [listName]="'To Do List'"
         ></todo-list>
         <todo-list
             [todoList]="todoList.trashList"
             [todoType]="todoListTypes.Trash"
-            [listName]="'Your trash'"
+            [listName]="'Trash List'"
         ></todo-list>
     </div>
 </div>
