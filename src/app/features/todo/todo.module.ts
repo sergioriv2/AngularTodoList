@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { TodoDetailsComponent } from './components/todo-details/todo-details.component';
-import { TodoContainerComponent } from './components/todo-container/todo-container.component';
+import { TodoViewComponent } from './components/todo-view/todo-view.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -14,7 +14,7 @@ import { TodoCleanDialogComponent } from './components/todo-clean-dialog/todo-cl
 
 const SHARED_COMPONENTS = [
     TodoDetailsComponent,
-    TodoContainerComponent,
+    TodoViewComponent,
     TodoListComponent,
     TodoFormDialogComponent,
     TodoCleanDialogComponent,

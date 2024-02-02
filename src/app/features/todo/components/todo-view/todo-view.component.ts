@@ -8,10 +8,10 @@ import { TodoFormDialogComponent } from '../todo-form-dialog/todo-form-dialog.co
 
 @Component({
     selector: 'todo-container',
-    templateUrl: './todo-container.component.html',
-    styleUrl: './todo-container.component.css',
+    templateUrl: './todo-view.component.html',
+    styleUrl: './todo-view.component.css',
 })
-export class TodoContainerComponent {
+export class TodoViewComponent {
     // Todo's List Properties
     todoList!: ITodoLists;
     todoListTypes = TodoListTypes;
@@ -29,14 +29,14 @@ export class TodoContainerComponent {
 
         // this.trashTodoList.list = [];
 
-        this.todoListsSubscription = this.todoService
-            .getTodoListsObservable()
-            .subscribe((items) => {
+        this.todoListsSubscription = this.todoService.todoList$.subscribe(
+            (items) => {
                 if (items) {
                     this.todoList.todoList = items?.todoList;
                     this.todoList.trashList = items?.trashList;
                 }
-            });
+            },
+        );
     }
 
     @HostListener('window:beforeunload')

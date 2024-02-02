@@ -1,10 +1,4 @@
-import {
-    Component,
-    Input,
-    OnChanges,
-    OnInit,
-    SimpleChanges,
-} from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { ITodoDetail } from '../../interfaces/todo-details.interface';
 import { TodoService } from '../../../../services/facade/todo.service';
 import { TodoListTypes } from '../../../../common/enums/todo-list-types.enum';
@@ -17,7 +11,7 @@ import { Subscription } from 'rxjs';
     templateUrl: './todo-list.component.html',
     styleUrl: './todo-list.component.css',
 })
-export class TodoListComponent {
+export class TodoListComponent implements OnDestroy {
     @Input()
     listName!: string;
 
@@ -28,12 +22,23 @@ export class TodoListComponent {
     todoType!: TodoListTypes;
 
     todoListTypes = TodoListTypes;
+    private listSubscription: Subscription;
 
     constructor(
         private cleanTrashDialog: MatDialog,
         private readonly todoService: TodoService,
     ) {
-        this.transformTodoList();
+        this.listSubscription = this.todoService.todoList$.subscribe({
+            next: (lists) => {
+                this.todoList =
+                    this.todoType === TodoListTypes.Todo
+                        ? lists.todoList
+                        : lists.trashList;
+            },
+        });
+    }
+    ngOnDestroy(): void {
+        this.listSubscription.unsubscribe();
     }
 
     transformTodoList() {

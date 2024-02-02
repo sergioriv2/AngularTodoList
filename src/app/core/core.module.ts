@@ -5,13 +5,7 @@ import { AppRoutingModule } from '../app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        HttpClientModule,
-        AppRoutingModule,
-        AppRoutingModule,
-        BrowserModule,
-    ],
+    imports: [CommonModule, HttpClientModule, AppRoutingModule, BrowserModule],
     providers: [],
     exports: [HttpClientModule, AppRoutingModule, BrowserModule],
 })

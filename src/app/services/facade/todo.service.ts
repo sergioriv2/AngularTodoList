@@ -11,6 +11,7 @@ import { TodoColors } from '../../common/enums/todo-colors.enum';
 export class TodoService {
     private todoList!: ITodoLists;
     private todoSubject = new BehaviorSubject<ITodoLists>(this.todoList);
+    public todoList$ = this.todoSubject.asObservable();
 
     constructor() {
         this.todoList = {

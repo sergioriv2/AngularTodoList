@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { LoginModule } from './features/login/login.module';
 import { TodoModule } from './features/todo/todo.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
@@ -12,12 +11,10 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
         // SharedModule,
 
         // Features
-        LoginModule,
+        // LoginModule,
         TodoModule,
     ],
     bootstrap: [AppComponent],
-    providers: [
-      provideAnimationsAsync()
-    ],
+    providers: [provideAnimationsAsync()],
 })
 export class AppModule {}
