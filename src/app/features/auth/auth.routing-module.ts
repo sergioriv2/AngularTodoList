@@ -1,17 +1,24 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
 import { AppRoutesEnum } from '../../shared/routes/app-routes.enum';
+import { AuthComponent } from './auth/auth.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Route[] = [
     {
-        path: '',
+        path: AppRoutesEnum.Blank,
         pathMatch: 'full',
         redirectTo: AppRoutesEnum.Login,
     },
     {
-        path: '**',
-        redirectTo: '',
-        pathMatch: 'full',
+        path: AppRoutesEnum.Blank,
+        component: AuthComponent,
+        children: [
+            {
+                path: AppRoutesEnum.Login,
+                component: LoginComponent,
+            },
+        ],
     },
 ];
 

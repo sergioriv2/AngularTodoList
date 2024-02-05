@@ -1,0 +1,16 @@
+<mat-form-field>
+    <mat-label *ngIf="hasLabel">{{ label }}</mat-label>
+    <input
+        [type]="inputType"
+        [id]="formControlName"
+        [(ngModel)]="value"
+        (ngModelChange)="onChange($event)"
+        (blur)="onTouched()"
+        #inputValue="ngModel"
+        matInput
+    />
+    <mat-error>required</mat-error>
+    <!-- <mat-error *ngIf="shouldShowErrors()">
+        <span *ngFor="let error of listOfErrors()">{{ error }}</span>
+    </mat-error> -->
+</mat-form-field>

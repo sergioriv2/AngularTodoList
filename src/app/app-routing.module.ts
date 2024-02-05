@@ -11,13 +11,13 @@ const routes: Routes = [
             import('./features/auth/auth.module').then((x) => x.AuthModule),
     },
     {
+        path: AppRoutesEnum.TodoList,
+        component: TodoViewComponent,
+    },
+    {
         path: '**',
         redirectTo: '',
         pathMatch: 'full',
-    },
-    {
-        path: AppRoutesEnum.TodoList,
-        component: TodoViewComponent,
     },
 ];
 
