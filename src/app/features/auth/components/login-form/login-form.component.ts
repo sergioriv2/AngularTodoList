@@ -71,6 +71,8 @@ export class LoginFormComponent implements OnInit, OnDestroy {
             ...this.formData,
         };
 
+        this.loginAPIErrors = [];
+        this.formService.updateShouldShowErrors(false);
         this.isLoading = true;
         this.authService.logInUser(signinPayload).subscribe({
             next: (response) => {
@@ -92,9 +94,8 @@ export class LoginFormComponent implements OnInit, OnDestroy {
             },
             error: (error) => {
                 this.isLoading = false;
-                const err = error as APILoginResponse;
-
-                if (err.errors) {
+                if (error.errors) {
+                    const err = error as APILoginResponse;
                     let errorList = err.errors;
                     this.formService.updateShouldShowErrors(true);
                     if (isStringArray(errorList)) {
@@ -109,6 +110,11 @@ export class LoginFormComponent implements OnInit, OnDestroy {
                             })
                             .flat();
                     }
+                } else {
+                    this.formService.updateShouldShowErrors(true);
+                    this.loginAPIErrors.push(
+                        'An unexpected error ocurred, please try again in a few minutes.',
+                    );
                 }
 
                 console.log({

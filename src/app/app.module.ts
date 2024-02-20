@@ -9,6 +9,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { APIUrlInterceptorService } from './interceptors/api-url.interceptors';
 import { AuthInterceptorService } from './interceptors/auth.interceptor';
 import { RoutesService } from './shared/services/routes.service';
+import { APICatchErrorsInterceptorService } from './interceptors/catch-errors.interceptor';
 
 @NgModule({
     declarations: [AppComponent],
@@ -32,6 +33,11 @@ import { RoutesService } from './shared/services/routes.service';
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptorService,
+            multi: true,
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: APICatchErrorsInterceptorService,
             multi: true,
         },
         provideAnimationsAsync(),
