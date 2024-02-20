@@ -20,14 +20,17 @@
                 {{ todoDetails.description }}
             </p>
         </div>
-        <div
-            class="todo-details-trash-handler"
-            (click)="handleTodoThrashOnClick()"
-        >
+        <div class="todo-details-trash-handler">
             @if (todoDetails.isInTrash) {
-            <i class="trash-handler fa-solid fa-rotate-left"></i>
+            <i
+                class="trash-handler fa-solid fa-rotate-left"
+                (click)="handleTodoThrashOnClick()"
+            ></i>
             } @else {
-            <i class="trash-handler fa-solid fa-trash"></i>
+            <i
+                class="trash-handler fa-solid fa-trash"
+                (click)="handleTodoThrashOnClick()"
+            ></i>
             }
         </div>
     </div>

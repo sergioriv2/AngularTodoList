@@ -1,0 +1,21 @@
+<div class="form-field">
+    <label *ngIf="hasLabel" class="form-field-label">{{ label }}</label>
+    <input
+        [type]="inputType"
+        [id]="formControlName"
+        [(ngModel)]="value"
+        (ngModelChange)="onChange($event)"
+        (blur)="onTouched()"
+        #inputValue="ngModel"
+        [disabled]="isDisabled"
+        [class]="
+            shouldShowErrors()
+                ? 'form-field-input form-field-error'
+                : 'form-field-input'
+        "
+    />
+    <div *ngIf="shouldShowErrors()" class="form-field-error-message">
+        <i class="fas fa-exclamation-triangle form-field-error-exclamation"></i>
+        <span>{{ listOfErrors()[0] }}</span>
+    </div>
+</div>

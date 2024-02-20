@@ -1,0 +1,28 @@
+<form [formGroup]="form" class="login-form">
+    <form-field
+        inputType="email"
+        [hasLabel]="true"
+        label="Email"
+        formControlName="email"
+    ></form-field>
+    <form-field
+        inputType="password"
+        [hasLabel]="true"
+        label="Password"
+        formControlName="password"
+    ></form-field>
+
+    <p class="login-message">
+        Don't have an account?
+        <a routerLink="/auth/signup" routerLinkActive="active">Sign Up</a>
+    </p>
+    <button
+        [disabled]="isLoading || !form.valid"
+        class="login-form-submit"
+        type="submit"
+        (click)="onSubmit()"
+    >
+        Sign In
+    </button>
+    <form-field-error-list [errors]="loginAPIErrors" />
+</form>

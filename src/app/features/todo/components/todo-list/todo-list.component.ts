@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy } from '@angular/core';
 import { ITodoDetail } from '../../interfaces/todo-details.interface';
-import { TodoService } from '../../../../services/facade/todo.service';
+import { TodoService } from '../../services/todo.service';
 import { TodoListTypes } from '../../../../common/enums/todo-list-types.enum';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { TodoCleanDialogComponent } from '../todo-clean-dialog/todo-clean-dialog.component';

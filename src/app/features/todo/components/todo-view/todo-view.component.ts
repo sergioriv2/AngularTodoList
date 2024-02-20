@@ -1,10 +1,13 @@
 import { Component, HostListener } from '@angular/core';
-import { TodoService } from '../../../../services/facade/todo.service';
+import { TodoService } from '../../services/todo.service';
 import { ITodoLists } from '../../interfaces/todo-details.interface';
 import { Subscription } from 'rxjs';
 import { TodoListTypes } from '../../../../common/enums/todo-list-types.enum';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { TodoFormDialogComponent } from '../todo-form-dialog/todo-form-dialog.component';
+import { LocalStorageItemsEnum } from '../../../../common/enums/local-storage.enum';
+import { Router } from '@angular/router';
+import { AppCompleteRoutesEnum } from '../../../../shared/routes/app-routes.enum';
 
 @Component({
     selector: 'todo-container',
@@ -19,6 +22,7 @@ export class TodoViewComponent {
     private todoListsSubscription: Subscription;
 
     constructor(
+        private readonly router: Router,
         private dialog: MatDialog,
         private readonly todoService: TodoService,
     ) {
@@ -64,6 +68,12 @@ export class TodoViewComponent {
     // get description() {
     //     return this.todosAddForm.get('description');
     // }
+
+    signOut() {
+        localStorage.removeItem(LocalStorageItemsEnum.ACCESS_TOKEN);
+        localStorage.removeItem(LocalStorageItemsEnum.REFRESH_TOKEN);
+        this.router.navigateByUrl(AppCompleteRoutesEnum.AuthRoot);
+    }
 
     openDialog() {
         const dialogConfig = new MatDialogConfig();

@@ -1,0 +1,53 @@
+<a routerLink="/auth/login" routerLinkActive="active">Sign in</a>
+<div *ngIf="showSignupForm">
+    <form [formGroup]="form" class="signup-form">
+        <form-field
+            inputType="text"
+            [hasLabel]="true"
+            label="Username"
+            formControlName="username"
+        ></form-field>
+        <form-field
+            inputType="email"
+            [hasLabel]="true"
+            label="Email"
+            formControlName="email"
+        ></form-field>
+        <form-field
+            inputType="password"
+            [hasLabel]="true"
+            label="Password"
+            formControlName="password"
+        ></form-field>
+        <button
+            class="signup-form-submit"
+            type="submit"
+            [disabled]="!form.valid || buttonDisabled"
+            (click)="onSubmit()"
+        >
+            Sign Up
+        </button>
+    </form>
+</div>
+<div *ngIf="showAccountActivationForm">
+    <p>
+        Your user was successfully registered. Please activate your account with
+        the code we sent to your email.
+    </p>
+    <form [formGroup]="accountActivationForm" class="activate-account-form">
+        <form-field
+            inputType="text"
+            [hasLabel]="true"
+            label="Activation code"
+            formControlName="code"
+        ></form-field>
+        <button
+            class="signup-form-submit"
+            type="submit"
+            [disabled]="!form.valid || buttonDisabled"
+            (click)="onSubmit()"
+        >
+            Activate Account
+        </button>
+    </form>
+</div>

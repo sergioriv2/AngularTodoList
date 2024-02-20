@@ -4,6 +4,11 @@ import { CoreModule } from './core/core.module';
 import { TodoModule } from './features/todo/todo.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { SharedModule } from './shared/shared.module';
+import { AuthModule } from './features/auth/auth.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { APIUrlInterceptorService } from './interceptors/api-url.interceptors';
+import { AuthInterceptorService } from './interceptors/auth.interceptor';
+import { RoutesService } from './shared/services/routes.service';
 
 @NgModule({
     declarations: [AppComponent],
@@ -13,9 +18,23 @@ import { SharedModule } from './shared/shared.module';
 
         // Features
         // LoginModule,
+        // AuthModule,
         TodoModule,
     ],
     bootstrap: [AppComponent],
-    providers: [provideAnimationsAsync()],
+    providers: [
+        RoutesService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: APIUrlInterceptorService,
+            multi: true,
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptorService,
+            multi: true,
+        },
+        provideAnimationsAsync(),
+    ],
 })
 export class AppModule {}

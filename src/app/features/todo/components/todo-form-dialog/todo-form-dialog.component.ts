@@ -6,7 +6,7 @@ import {
     Validators,
 } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { TodoService } from '../../../../services/facade/todo.service';
+import { TodoService } from '../../services/todo.service';
 import { ITodoDetail } from '../../interfaces/todo-details.interface';
 import { generateRandomNumber } from '../../../../helpers/generate-random-number';
 

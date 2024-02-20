@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { TodoService } from '../../../../services/facade/todo.service';
+import { TodoService } from '../../services/todo.service';
 import { ITodoDetail } from '../../interfaces/todo-details.interface';
 import { TodoListTypes } from '../../../../common/enums/todo-list-types.enum';
 

@@ -1,7 +1,22 @@
 export enum AppRoutesEnum {
-    TodoList = 'todo-list',
-    // Auth
+    // Misc routes
     Blank = '',
+    // App routes
+    App = 'app',
+    TodoList = 'todo-list',
+    // Auth routes
     Auth = 'auth',
     Login = 'login',
+    Signup = 'signup',
+}
+
+export enum AppCompleteRoutesEnum {
+    // App Routes
+    AppRoot = AppRoutesEnum.App,
+    TodoList = `${AppRoutesEnum.App}/${AppRoutesEnum.TodoList}`,
+
+    // Auth Routes
+    AuthRoot = AppRoutesEnum.Auth,
+    AuthLogin = `${AppRoutesEnum.Auth}/${AppRoutesEnum.Login}`,
+    AuthSignup = `${AppRoutesEnum.Auth}/${AppRoutesEnum.Signup}`,
 }
