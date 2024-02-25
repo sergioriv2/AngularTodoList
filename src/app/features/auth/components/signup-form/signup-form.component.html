@@ -19,6 +19,15 @@
             label="Password"
             formControlName="password"
         ></form-field>
+        <form-field
+            inputType="password"
+            [hasLabel]="true"
+            label="Password Confirmation"
+            formControlName="passwordConfirmation"
+        ></form-field>
+        <form-field-error-list
+            [errors]="signupAPIErrors"
+        ></form-field-error-list>
         <button
             class="signup-form-submit"
             type="submit"
@@ -26,28 +35,6 @@
             (click)="onSubmit()"
         >
             Sign Up
-        </button>
-    </form>
-</div>
-<div *ngIf="showAccountActivationForm">
-    <p>
-        Your user was successfully registered. Please activate your account with
-        the code we sent to your email.
-    </p>
-    <form [formGroup]="accountActivationForm" class="activate-account-form">
-        <form-field
-            inputType="text"
-            [hasLabel]="true"
-            label="Activation code"
-            formControlName="code"
-        ></form-field>
-        <button
-            class="signup-form-submit"
-            type="submit"
-            [disabled]="!form.valid || buttonDisabled"
-            (click)="onSubmit()"
-        >
-            Activate Account
         </button>
     </form>
 </div>

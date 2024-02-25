@@ -94,32 +94,8 @@ export class LoginFormComponent implements OnInit, OnDestroy {
             },
             error: (error) => {
                 this.isLoading = false;
-                if (error.errors) {
-                    const err = error as APILoginResponse;
-                    let errorList = err.errors;
-                    this.formService.updateShouldShowErrors(true);
-                    if (isStringArray(errorList)) {
-                        this.loginAPIErrors = errorList as string[];
-                    } else {
-                        errorList = errorList as APIResponseError[];
-                        this.loginAPIErrors = errorList
-                            .map((el) => {
-                                return Object.values(el.constraints).map(
-                                    (value) => value,
-                                );
-                            })
-                            .flat();
-                    }
-                } else {
-                    this.formService.updateShouldShowErrors(true);
-                    this.loginAPIErrors.push(
-                        'An unexpected error ocurred, please try again in a few minutes.',
-                    );
-                }
-
-                console.log({
-                    errors: this.loginAPIErrors,
-                });
+                this.loginAPIErrors =
+                    this.formService.handleAPIFormErrors(error);
             },
         });
     }

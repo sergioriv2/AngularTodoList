@@ -24,14 +24,26 @@ export class FormFieldComponent implements ControlValueAccessor {
     @Input() inputType: 'text' | 'email' | 'password' = 'text';
     @Input() formControlName: string = '';
     @Input() isDisabled: boolean = false;
+    @Input() autocompleteFlag: boolean = false;
 
-    value: string = '';
     private ngControl: any;
+    hasPasswordToggler = false;
+    showPassword = false;
+    value: string = '';
 
     constructor(private injector: Injector) {}
 
     ngOnInit() {
         setTimeout(() => (this.ngControl = this.injector.get(NgControl, null)));
+        if (this.inputType === 'password') {
+            this.hasPasswordToggler = true;
+            this.showPassword = false;
+        }
+    }
+
+    passwordToggler() {
+        this.showPassword = !this.showPassword;
+        this.inputType = !this.showPassword ? 'password' : 'text';
     }
 
     shouldShowErrors() {
@@ -60,6 +72,8 @@ export class FormFieldComponent implements ControlValueAccessor {
                     } else {
                         return 'pattern';
                     }
+                case 'passwordsDontMatch':
+                    return `Passwords don't match.`;
                 default:
                     console.log(key);
                     return 'Invalid field';

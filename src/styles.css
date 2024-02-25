@@ -4,6 +4,7 @@
 
 :root {
     --white: #DDE6ED;
+    --white-shadow: #c3d0db;
     --dark:  #191919;
     --dark-green: #183D3D;
     --medium-green: #5C8374;
@@ -17,7 +18,7 @@
     --pink: #D63484;
     --green: #65B741;
     --gray: #5C5470;
-    --dark-gray: #2C3333;
+    --dark-gray: #3B3B3B;
     --dark-2: #03001C;
 }
 
@@ -26,9 +27,6 @@
     box-sizing: border-box;
 }
 
-html {
-    background-color: var(--dark);
-}
 
 html, body { height: 100%; }
 

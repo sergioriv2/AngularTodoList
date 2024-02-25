@@ -1,0 +1,13 @@
+.auth-component-container {
+    background-color: var(--white);
+    height: 100vh;
+}
+
+@media screen and (min-width: 425px) {
+    .auth-component-container {
+        /* width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center; */
+    }
+}

@@ -14,15 +14,8 @@ const routes: Routes = [
     {
         path: AppRoutesEnum.App,
         canActivate: [AuthGuard],
-        children: [
-            {
-                path: AppRoutesEnum.TodoList,
-                loadChildren: () =>
-                    import('./features/todo/todo.module').then(
-                        (x) => x.TodoModule,
-                    ),
-            },
-        ],
+        loadChildren: () =>
+            import('./features/todo/todo.module').then((x) => x.TodoModule),
     },
     {
         path: '**',

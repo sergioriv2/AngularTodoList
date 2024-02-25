@@ -20,6 +20,17 @@ import { SignupFormComponent } from './components/signup-form/signup-form.compon
 import { FormFieldErrorList } from '../../shared/components/form-field-error-list/form-field-error-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormService } from '../../shared/services/form.service';
+import { AccountActivationComponent } from './components/account-activation/account-activation.component';
+import { AccountActivationForm } from './components/account-activation-form/account-activation-form.component';
+import {
+    GoogleLoginProvider,
+    GoogleSigninButtonModule,
+    MicrosoftLoginProvider,
+    SocialAuthServiceConfig,
+    SocialLoginModule,
+} from '@abacritt/angularx-social-login';
+import { ExternalSignupOptionComponent } from './components/external-signup-option/external-signup-option.component';
+import { environment } from '../../../environments/environment';
 
 const SHARED_COMPONENTS: any = [
     LoginComponent,
@@ -28,6 +39,9 @@ const SHARED_COMPONENTS: any = [
     SignupComponent,
     SignupFormComponent,
     FormFieldErrorList,
+    AccountActivationComponent,
+    AccountActivationForm,
+    ExternalSignupOptionComponent,
 ];
 
 @NgModule({
@@ -38,6 +52,32 @@ const SHARED_COMPONENTS: any = [
         {
             provide: ErrorStateMatcher,
             useClass: ShowOnDirtyErrorStateMatcher,
+        },
+        {
+            provide: 'SocialAuthServiceConfig',
+            useValue: {
+                autoLogin: false,
+                providers: [
+                    {
+                        id: GoogleLoginProvider.PROVIDER_ID,
+                        provider: new GoogleLoginProvider(
+                            environment.clientIds.google,
+                        ),
+                    },
+                    {
+                        id: MicrosoftLoginProvider.PROVIDER_ID,
+                        provider: new MicrosoftLoginProvider(
+                            environment.clientIds.microsoft,
+                            {
+                                redirect_uri: 'http://localhost:4200/app',
+                            },
+                        ),
+                    },
+                ],
+                onError: (err) => {
+                    console.error(err);
+                },
+            } as SocialAuthServiceConfig,
         },
     ],
     imports: [
@@ -52,6 +92,8 @@ const SHARED_COMPONENTS: any = [
         MatButtonModule,
         MatInputModule,
         HttpClientModule,
+        SocialLoginModule,
+        GoogleSigninButtonModule,
     ],
     exports: [...SHARED_COMPONENTS],
 })

@@ -6,6 +6,7 @@ import { AppCompleteRoutesEnum } from '../../../../shared/routes/app-routes.enum
 @Component({
     selector: 'app-auth',
     templateUrl: './auth.component.html',
+    styleUrl: './auth.component.css',
 })
 export class AuthComponent implements OnInit {
     shouldShowComponent: boolean = true;

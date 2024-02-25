@@ -1,26 +1,17 @@
 import { Injectable } from '@angular/core';
 import { SignupDto } from '../dtos/signup.dto';
-import { CustomAxiosInstance } from '../../../helpers/axios';
 import {
     APILoginResponse,
     APISignupResponse,
     APIVerifyJWTResponse,
     LoginResponse,
 } from '../models/auth-responses.interface';
-import { Axios, AxiosError } from 'axios';
 import { SignInDto } from '../dtos/signin.dto';
-import {
-    EMPTY,
-    Observable,
-    catchError,
-    from,
-    map,
-    of,
-    tap,
-    throwError,
-} from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import { LocalStorageItemsEnum } from '../../../common/enums/local-storage.enum';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { ActivateEmailAccountDto } from '../dtos/activate-account.dto';
+import { ValidateGoogleTokenDto } from '../dtos/validate-token.dto';
 
 @Injectable()
 export class AuthService {
@@ -43,13 +34,26 @@ export class AuthService {
             );
     }
 
-    signupUser(payload: SignupDto): Observable<boolean> {
-        return this.httpClient
-            .post<APISignupResponse>('auth/sign-up', payload)
-            .pipe(
-                map((el) => !!el.payload?.emailSent),
-                catchError(() => of(false)),
-            );
+    signupUser(payload: SignupDto): Observable<APISignupResponse> {
+        return this.httpClient.post<APISignupResponse>('auth/sign-up', payload);
+    }
+
+    activateEmailAccount(
+        payload: ActivateEmailAccountDto,
+    ): Observable<APILoginResponse> {
+        return this.httpClient.post<APILoginResponse>(
+            'auth/activate-email',
+            payload,
+        );
+    }
+
+    validateGoogleToken(
+        payload: ValidateGoogleTokenDto,
+    ): Observable<APILoginResponse> {
+        return this.httpClient.post<APILoginResponse>(
+            'auth/validate-jwt/google',
+            payload,
+        );
     }
 
     logInUser(payload: SignInDto): Observable<APILoginResponse> {

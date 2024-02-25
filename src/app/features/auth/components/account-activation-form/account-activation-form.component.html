@@ -1,0 +1,23 @@
+<p>
+    Your user was successfully registered. Please activate your account with the
+    code we sent to your email.
+</p>
+<form [formGroup]="form" class="activate-account-form">
+    <form-field
+        inputType="text"
+        [hasLabel]="true"
+        label="Activation code"
+        formControlName="code"
+    ></form-field>
+    <button
+        class="signup-form-submit"
+        type="submit"
+        [disabled]="!form.valid"
+        (click)="onSubmit()"
+    >
+        Activate Account
+    </button>
+    <form-field-error-list
+        [errors]="activateAccountErrorList"
+    ></form-field-error-list>
+</form>

@@ -1,0 +1,13 @@
+<!-- <button (click)="handleGoogleLogin()">Login with google</button> -->
+<asl-google-signin-button
+    *ngIf="signinType === externalSignupOptionEnum.Google"
+    type="standard"
+    size="large"
+    text="continue_with"
+></asl-google-signin-button>
+<button
+    *ngIf="signinType === externalSignupOptionEnum.Microsoft"
+    (click)="handleMicrosoftLogin()"
+>
+    Continue with Microsoft
+</button>

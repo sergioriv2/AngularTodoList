@@ -8,6 +8,7 @@ export enum AppRoutesEnum {
     Auth = 'auth',
     Login = 'login',
     Signup = 'signup',
+    AccountActivation = 'account-activation',
 }
 
 export enum AppCompleteRoutesEnum {
@@ -19,4 +20,5 @@ export enum AppCompleteRoutesEnum {
     AuthRoot = AppRoutesEnum.Auth,
     AuthLogin = `${AppRoutesEnum.Auth}/${AppRoutesEnum.Login}`,
     AuthSignup = `${AppRoutesEnum.Auth}/${AppRoutesEnum.Signup}`,
+    AuthAccountActivation = `${AppRoutesEnum.Auth}/${AppRoutesEnum.AccountActivation}`,
 }

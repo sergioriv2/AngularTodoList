@@ -4,6 +4,7 @@ import { AppRoutesEnum } from '../../shared/routes/app-routes.enum';
 import { AuthComponent } from './components/auth/auth.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { AccountActivationComponent } from './components/account-activation/account-activation.component';
 
 const routes: Route[] = [
     {
@@ -11,12 +12,16 @@ const routes: Route[] = [
         component: AuthComponent,
         children: [
             {
-                path: 'signup',
+                path: AppRoutesEnum.Signup,
                 component: SignupComponent,
             },
             {
                 path: AppRoutesEnum.Login,
                 component: LoginComponent,
+            },
+            {
+                path: AppRoutesEnum.AccountActivation,
+                component: AccountActivationComponent,
             },
             {
                 path: AppRoutesEnum.Blank,

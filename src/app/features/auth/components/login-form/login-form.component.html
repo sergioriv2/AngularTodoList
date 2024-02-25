@@ -1,4 +1,10 @@
 <form [formGroup]="form" class="login-form">
+    <h2 class="login-form-title">Log In</h2>
+    <p class="login-form-title-message">
+        Let's get started and save those lists from your to do list
+    </p>
+
+    <form-field-error-list [errors]="loginAPIErrors" />
     <form-field
         inputType="email"
         [hasLabel]="true"
@@ -11,11 +17,6 @@
         label="Password"
         formControlName="password"
     ></form-field>
-
-    <p class="login-message">
-        Don't have an account?
-        <a routerLink="/auth/signup" routerLinkActive="active">Sign Up</a>
-    </p>
     <button
         [disabled]="isLoading || !form.valid"
         class="login-form-submit"
@@ -24,5 +25,14 @@
     >
         Sign In
     </button>
-    <form-field-error-list [errors]="loginAPIErrors" />
+    <p class="login-message">Forgotten password?</p>
+    <p class="login-message">or Log In with</p>
+
+    <external-signin signinType="Google"></external-signin>
+    <external-signin signinType="Microsoft"></external-signin>
+
+    <p class="login-message">
+        Don't have an account yet?
+        <a routerLink="/auth/signup" routerLinkActive="active">Sign Up</a>
+    </p>
 </form>

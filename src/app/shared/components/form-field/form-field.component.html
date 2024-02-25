@@ -1,19 +1,29 @@
 <div class="form-field">
     <label *ngIf="hasLabel" class="form-field-label">{{ label }}</label>
-    <input
-        [type]="inputType"
-        [id]="formControlName"
-        [(ngModel)]="value"
-        (ngModelChange)="onChange($event)"
-        (blur)="onTouched()"
-        #inputValue="ngModel"
-        [disabled]="isDisabled"
-        [class]="
-            shouldShowErrors()
-                ? 'form-field-input form-field-error'
-                : 'form-field-input'
-        "
-    />
+    <div class="form-field-input-container">
+        <input
+            [type]="inputType"
+            [id]="formControlName"
+            [(ngModel)]="value"
+            (ngModelChange)="onChange($event)"
+            (blur)="onTouched()"
+            #inputValue="ngModel"
+            [disabled]="isDisabled"
+            [autocomplete]="!autocompleteFlag ? 'off' : 'on'"
+            [class]="
+                shouldShowErrors()
+                    ? 'form-field-input form-field-error'
+                    : 'form-field-input'
+            "
+        />
+        <span
+            *ngIf="hasPasswordToggler"
+            (click)="passwordToggler()"
+            class="password-toggle-icon"
+            ><i [class]="!showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'"></i
+        ></span>
+    </div>
+
     <div *ngIf="shouldShowErrors()" class="form-field-error-message">
         <i class="fas fa-exclamation-triangle form-field-error-exclamation"></i>
         <span>{{ listOfErrors()[0] }}</span>

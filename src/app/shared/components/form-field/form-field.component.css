@@ -2,14 +2,34 @@
     outline: none;
     padding: 8px 10px;
     background-color: white;
-    border: 2px solid var(--gray);
+    border: 1px solid var(--white-shadow);
     font-weight: 500;
     font-size: 13px;
+    border-radius: 5px;
+    height: 40px;
     font-family: inherit;
     width: 330px;
     max-width: 330px;
 }
 
+.password-toggle-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+  
+  .password-toggle-icon i {
+    font-size: 14px;
+    line-height: 1;
+    color: var(--gray);
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .password-toggle-icon i:hover {
+    color: #000;
+  }
 
 .form-field-error-message {
     font-size: 12px;
@@ -17,6 +37,10 @@
     margin-top: 10px;
     color: var(--red);
     word-wrap:break-word;
+}
+
+.form-field-input:focus:not(.form-field-error) {
+    border-color: #000;
 }
 
 .form-field-error-exclamation {
@@ -27,8 +51,7 @@
 .form-field-error {
     border-color: var(--red);
     color: var(--red);
-    border-left: 5px solid var(--red);
-
+    /* border-left: 3px solid var(--red); */
 }
 
 .form-field-label {
@@ -38,6 +61,11 @@
     margin-bottom: 5px;
     font-family: inherit;
     font-weight: 400;
+}
+
+.form-field-input-container {
+    position: relative;
+    width: 100%;
 }
 
 .form-field {

@@ -6,7 +6,17 @@ import { TodoViewComponent } from './components/todo-view/todo-view.component';
 const routes: Route[] = [
     {
         path: AppRoutesEnum.Blank,
-        component: TodoViewComponent,
+        children: [
+            {
+                path: AppRoutesEnum.TodoList,
+                component: TodoViewComponent,
+            },
+            {
+                path: AppRoutesEnum.Blank,
+                redirectTo: AppRoutesEnum.TodoList,
+                pathMatch: 'full',
+            },
+        ],
     },
 ];
 
