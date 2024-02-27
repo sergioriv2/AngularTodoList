@@ -12,6 +12,7 @@ import { LocalStorageItemsEnum } from '../../../common/enums/local-storage.enum'
 import { HttpClient } from '@angular/common/http';
 import { ActivateEmailAccountDto } from '../dtos/activate-account.dto';
 import { ValidateGoogleTokenDto } from '../dtos/validate-token.dto';
+import { ExternalSignupOptionEnum } from '../components/external-signup-option/external-signup.enum';
 
 @Injectable()
 export class AuthService {
@@ -47,11 +48,12 @@ export class AuthService {
         );
     }
 
-    validateGoogleToken(
+    validateProviderToken(
         payload: ValidateGoogleTokenDto,
+        provider: ExternalSignupOptionEnum,
     ): Observable<APILoginResponse> {
         return this.httpClient.post<APILoginResponse>(
-            'auth/validate-jwt/google',
+            `auth/validate-jwt/${provider.toLocaleLowerCase()}`,
             payload,
         );
     }

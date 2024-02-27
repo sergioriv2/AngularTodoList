@@ -31,6 +31,7 @@ import {
 } from '@abacritt/angularx-social-login';
 import { ExternalSignupOptionComponent } from './components/external-signup-option/external-signup-option.component';
 import { environment } from '../../../environments/environment';
+import { ExternalSignupService } from './services/external-signup.service';
 
 const SHARED_COMPONENTS: any = [
     LoginComponent,
@@ -47,6 +48,7 @@ const SHARED_COMPONENTS: any = [
 @NgModule({
     declarations: [...SHARED_COMPONENTS],
     providers: [
+        ExternalSignupService,
         FormService,
         AuthService,
         {
@@ -70,6 +72,8 @@ const SHARED_COMPONENTS: any = [
                             environment.clientIds.microsoft,
                             {
                                 redirect_uri: 'http://localhost:4200/app',
+                                authority:
+                                    'https://login.microsoftonline.com/7cbc41b9-383d-47a7-b45e-e31b691e0850',
                             },
                         ),
                     },
