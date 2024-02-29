@@ -33,3 +33,15 @@
     height: 14px;
 }
 
+.microsoftSignInButton {
+    background-color: #2F2F2F; /* Color de fondo Microsoft */
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.microsoftSignInButton:hover {
+    background-color: #555;
+}

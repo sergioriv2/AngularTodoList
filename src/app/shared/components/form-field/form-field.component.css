@@ -12,19 +12,21 @@
     max-width: 330px;
 }
 
+
+
 .password-toggle-icon {
+    width: 22px;
+    height: 22px;
     position: absolute;
     top: 50%;
-    right: 10px;
+    right: 15px;
     transform: translateY(-50%);
     cursor: pointer;
   }
   
-  .password-toggle-icon i {
-    font-size: 14px;
-    line-height: 1;
+  .password-toggle-icon img {
+    width: 100%;
     color: var(--gray);
-    transition: color 0.3s ease-in-out;
   }
   
   .password-toggle-icon i:hover {
