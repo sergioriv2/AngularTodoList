@@ -1,18 +1,23 @@
+@media screen and (min-width: 425px) {
+    .form-field-input, .form-field {
+        width: var(--form-desktop-inputs-width) !important;
+        max-width: var(--form-desktop-inputs-width) !important;
+    }
+}
+
 .form-field-input {
     outline: none;
     padding: 8px 10px;
     background-color: white;
     border: 1px solid var(--white-shadow);
     font-weight: 500;
-    font-size: 13px;
+    font-size: var(--mobile-font-size);
     border-radius: 5px;
     height: 40px;
     font-family: inherit;
-    width: 330px;
-    max-width: 330px;
+    width: var(--form-mobile-inputs-width);
+    max-width: var(--form-mobile-inputs-width);
 }
-
-
 
 .password-toggle-icon {
     width: 22px;
@@ -22,11 +27,12 @@
     right: 15px;
     transform: translateY(-50%);
     cursor: pointer;
+
   }
   
-  .password-toggle-icon img {
+  .password-toggle-icon img, object {
     width: 100%;
-    color: var(--gray);
+    cursor: pointer;
   }
   
   .password-toggle-icon i:hover {
@@ -72,6 +78,6 @@
 
 .form-field {
     margin: 10px 0;
-    width: 330px;
-    max-width: 330px;
+    width: var(--form-mobile-inputs-width);
+    max-width: var(--form-mobile-inputs-width);
 }

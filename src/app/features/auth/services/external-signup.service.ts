@@ -72,7 +72,7 @@ export class ExternalSignupService {
                 size: 'medium',
                 locale: 'en-US',
                 text: 'continue_with',
-                width: '330',
+                width: '280',
                 shape: 'rectangular',
                 type: 'standard',
                 logo_alignment: 'center',

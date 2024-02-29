@@ -22,10 +22,16 @@
             class="password-toggle-icon"
         >
             <img
-                [src]="
-                    showPassword
-                        ? '/assets/eye-close-svgrepo-com.svg'
-                        : '/assets/eye-open-svgrepo-com.svg'
+                *ngIf="showPassword"
+                src="
+                    assets/eye-close-svgrepo-com.svg
+                "
+                alt="Toggle Password Visibility"
+            />
+            <img
+                *ngIf="!showPassword"
+                src="
+                    assets/eye-open-svgrepo-com.svg
                 "
                 alt="Toggle Password Visibility"
             />

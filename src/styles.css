@@ -2,6 +2,7 @@
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
 
+
 :root {
     --white: #DDE6ED;
     --white-shadow: #c3d0db;
@@ -20,6 +21,16 @@
     --gray: #5C5470;
     --dark-gray: #3B3B3B;
     --dark-2: #03001C;
+
+    /* Global forms values */
+    /* ----- Mobile  ----- */
+    --mobile-font-size: 14px;
+    --form-mobile-container-width: 330px;
+    --form-mobile-inputs-width: 280px;
+    /* ----- Desktop (min-width: 425px) ----- */
+    --desktop-font-size: 12px;
+    --form-desktop-container-width: 400px;
+    --form-desktop-inputs-width: 330px;
 }
 
 * {

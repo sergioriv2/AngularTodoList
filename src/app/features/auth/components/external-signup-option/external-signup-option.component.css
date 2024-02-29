@@ -1,7 +1,7 @@
 .signup-option {
     width: 100%;
     cursor: pointer;
-    font-size: 14px;
+    font-size: var(--mobile-font-size);
     border: 1px solid #dadce0;
     background-color: #fff;
     border-radius: 4px;
