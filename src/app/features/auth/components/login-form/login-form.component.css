@@ -9,7 +9,7 @@
     box-shadow: 0px 0px 10px 5px var(--white-shadow);
 }
 
-.login-form * {
+.login-form *:not(.signup-options) {
     width: 330px;
 }
 

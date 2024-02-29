@@ -64,6 +64,9 @@ const SHARED_COMPONENTS: any = [
                         id: GoogleLoginProvider.PROVIDER_ID,
                         provider: new GoogleLoginProvider(
                             environment.clientIds.google,
+                            {
+                                oneTapEnabled: false,
+                            },
                         ),
                     },
                     {

@@ -8,6 +8,7 @@ import { ExternalSignupService } from '../../services/external-signup.service';
 
 @Component({
     templateUrl: './external-signup-option.component.html',
+    styleUrl: './external-signup-option.component.css',
     selector: 'external-signin',
 })
 export class ExternalSignupOptionComponent {
