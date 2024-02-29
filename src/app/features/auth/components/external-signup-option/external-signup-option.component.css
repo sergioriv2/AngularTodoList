@@ -1,0 +1,35 @@
+.signup-option {
+    width: 100%;
+    cursor: pointer;
+    font-size: 14px;
+    border: 1px solid #dadce0;
+    background-color: #fff;
+    border-radius: 4px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Open Sans" sans-serif;
+    color: #3c4043;
+    transition: background-color .218s;
+    margin-bottom: 10px;
+}
+
+.google-signup-option {
+    margin-bottom: 10px;
+}
+
+.signup-option:hover {
+    border-color: #d2e3fc;
+    background-color: rgba(66, 133, 244, .04);
+}
+
+.signup-option-image {
+    margin-right: 8px;
+}
+
+.signup-option-image object {
+    width: 14px;
+    height: 14px;
+}
+

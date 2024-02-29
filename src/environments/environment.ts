@@ -1,8 +1,13 @@
 export const environment = {
-    dev: false,
-    apiUrl: '',
-    clientIds: {
-        microsoft: '',
-        google: '',
+    dev: true,
+    apiUrl: 'https://localhost:4604/',
+    socialAuth: {
+        microsoft: {
+            tenantId: '',
+            clientId: '',
+        },
+        google: {
+            clientId: '',
+        },
     },
 };

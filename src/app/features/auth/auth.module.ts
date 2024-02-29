@@ -63,17 +63,19 @@ const SHARED_COMPONENTS: any = [
                     {
                         id: GoogleLoginProvider.PROVIDER_ID,
                         provider: new GoogleLoginProvider(
-                            environment.clientIds.google,
+                            environment.socialAuth.google.clientId,
+                            {
+                                oneTapEnabled: false,
+                            },
                         ),
                     },
                     {
                         id: MicrosoftLoginProvider.PROVIDER_ID,
                         provider: new MicrosoftLoginProvider(
-                            environment.clientIds.microsoft,
+                            environment.socialAuth.microsoft.clientId,
                             {
                                 redirect_uri: 'http://localhost:4200/app',
-                                authority:
-                                    'https://login.microsoftonline.com/7cbc41b9-383d-47a7-b45e-e31b691e0850',
+                                authority: `https://login.microsoftonline.com/${environment.socialAuth.microsoft.tenantId}`,
                             },
                         ),
                     },
