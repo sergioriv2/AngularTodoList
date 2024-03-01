@@ -1,14 +1,11 @@
 <main-form
     [formGroup]="form"
-    [onSubmitProp]="onSubmit"
+    [onSubmitProp]="onSubmit.bind(this)"
     title="Account Activate"
     subtitle="We have sent a verification code to your inbox"
     submitButtonText="Verify Code"
 >
     <div class="form-inputs-content">
         <code-input (codeChanged)="handleCodeChanges($event)"></code-input>
-    </div>
-    <div class="form-footer-content">
-        <p>This site is protected by reCAPTCHA and the Google Privacy Policy</p>
     </div>
 </main-form>

@@ -1,6 +1,9 @@
 export const environment = {
     dev: true,
     apiUrl: 'https://localhost:4604/',
+    recaptcha: {
+        siteKey: '6LcBpYUpAAAAADHVc16sgnpwqbE5sLC8LZD8lYns',
+    },
     socialAuth: {
         microsoft: {
             tenantId: '7cbc41b9-383d-47a7-b45e-e31b691e0850',
