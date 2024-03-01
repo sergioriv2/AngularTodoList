@@ -18,15 +18,17 @@ import { SessionStorageItemsEnum } from '../../../../common/enums/session-storag
 @Component({
     selector: 'signup-form',
     templateUrl: './signup-form.component.html',
-    styleUrl: './signup-form.component.css',
+    styleUrls: [
+        './signup-form.component.css',
+        '../login-form/login-form.component.css',
+    ],
 })
 export class SignupFormComponent implements OnInit, OnDestroy {
     form!: FormGroup;
     formData: ISignupForm;
 
     // States
-    buttonDisabled: boolean;
-    showSignupForm: boolean;
+    isLoading: boolean;
     signupAPIErrors: string[] = [];
 
     private formValuesSubscription!: Subscription;
@@ -37,8 +39,7 @@ export class SignupFormComponent implements OnInit, OnDestroy {
         private readonly formBuilder: FormBuilder,
         private readonly router: Router,
     ) {
-        this.buttonDisabled = false;
-        this.showSignupForm = true;
+        this.isLoading = false;
 
         this.formData = {
             email: '',
@@ -126,11 +127,11 @@ export class SignupFormComponent implements OnInit, OnDestroy {
             ...this.formData,
         };
 
-        this.buttonDisabled = true;
+        this.isLoading = true;
 
         this.authService.signupUser(signupPayload).subscribe({
             next: (response) => {
-                this.buttonDisabled = false;
+                this.isLoading = false;
                 if (response.payload && response.payload.emailSent) {
                     sessionStorage.setItem(
                         SessionStorageItemsEnum.EmailAccountActivation,
@@ -142,7 +143,7 @@ export class SignupFormComponent implements OnInit, OnDestroy {
                 }
             },
             error: (error) => {
-                this.buttonDisabled = false;
+                this.isLoading = false;
                 this.signupAPIErrors =
                     this.formService.handleAPIFormErrors(error);
             },

@@ -1,110 +1,26 @@
-@media screen and (min-width: 425px) {
-    .login-form  {
-        height: auto !important;
-        justify-content: unset !important;
-        box-shadow: 0px 0px 10px 5px var(--white-shadow);
-        width: var(--form-desktop-container-width) !important;
-    }
-
-    .login-form > *:not(.external-options-container) {
-        width: var(--form-desktop-inputs-width) !important;
-    }
-    
-}
-
-.login-form {
-    display: flex;
-    flex-direction: column;
-    height: 700px;
-    width: var(--form-mobile-container-width);
-    background-color: white;
-    align-items: center;
-    justify-content: space-evenly;
-    border-radius: 12px;
-    padding: 20px 0;
-}
-
-.login-form *:not(.signup-options) {
-    width: var(--form-mobile-inputs-width);
-}
-
-.login-form > p, h1, h2 {
-    text-align: center;
-    color: var(--dark);
-}
-
-.login-form-title {
-    margin: 5px 0;
-}
-
-.login-form-title-message {
-    font-size: var(--mobile-font-size);
-    font-weight: 300;
-    margin: 10px 0 20px 0;
-    color: var(--dark-gray);
-}
-
-.login-message {
-    font-size: var(--mobile-font-size);
-    color: var(--dark);
-}
-
-.login-message a {
-    font-size: inherit;
-    color: inherit;
-    text-decoration: none;
-}
-
-.login-message a:visited {
-    color: inherit;
-    text-decoration: none;
-}
-
-.login-form-submit:disabled {
-    background-color: var(--dark-gray);
-    transition: background-color 0.5s ease-in-out;
-    cursor: default;
-}
-
-.login-form-submit {
-    background-color: var(--purple);
-    font-family: inherit;
-    border: none;
-    height: 30px;
-    width: var(--form-mobile-inputs-width);
-    font-size: 12px;
-    color: white;
-    font-weight: 400;
-    border-radius: 6px;
-    height: 35px;
-    margin: 20px 0;
-    cursor: pointer;
-    transition: background-color 0.5s ease-in-out;
-}
 
 .external-options-container {
-    margin-bottom: 30px;
+    width: 280px;
+    margin: 20px auto 60px;
 }
 
-.login-form a {
-    color: var(--dark);
-    font-size: var(--mobile-font-size);
-    font-weight: 600;
+.form-footer-content {
+    text-align: center;
 }
 
-.login-footer {
+.forgotten-password-message {
+    margin-bottom: 40px;
+    margin-top: 10px;
     text-align: center;
 }
 
 .external-options-title {
     border-bottom: 1px solid var(--white-shadow);
     line-height: 0.1em;
-    margin: 20px 0 30px;
+    margin: 25px 0 35px;
+    text-align: center;
 }
 
-.forgotten-password-message {
-    margin: 0 0 15px;
-}
 
 .external-options-title span {
     background: white;

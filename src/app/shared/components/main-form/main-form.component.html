@@ -1,0 +1,26 @@
+<form [formGroup]="formGroup" class="main-form">
+    <h2 class="main-form-title" *ngIf="title !== null || title !== undefined">
+        {{ title }}
+    </h2>
+    <p class="main-form-subtitle" *ngIf="title !== null || title !== undefined">
+        {{ subtitle }}
+    </p>
+    <div class="main-form-inputs">
+        <ng-content select=".form-inputs-content"> </ng-content>
+    </div>
+    <button
+        class="form-submit"
+        [disabled]="isLoading || !formGroup.valid"
+        type="submit"
+        (click)="onSubmit()"
+    >
+        {{ submitButtonText }}
+    </button>
+    <div class="main-form-body">
+        <ng-content select=".form-body-content"> </ng-content>
+    </div>
+
+    <div class="main-form-footer">
+        <ng-content select=".form-footer-content"> </ng-content>
+    </div>
+</form>

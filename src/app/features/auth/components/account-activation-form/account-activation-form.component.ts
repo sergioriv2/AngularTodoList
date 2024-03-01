@@ -43,17 +43,17 @@ export class AccountActivationForm implements OnInit, OnDestroy {
             },
         );
 
-        if (
-            !sessionStorage.getItem(
-                SessionStorageItemsEnum.EmailAccountActivation,
-            )
-        ) {
-            this.router.navigateByUrl(AppCompleteRoutesEnum.AuthRoot);
-        } else {
-            this.emailAccountActivation = sessionStorage.getItem(
-                SessionStorageItemsEnum.EmailAccountActivation,
-            ) as string;
-        }
+        // if (
+        //     !sessionStorage.getItem(
+        //         SessionStorageItemsEnum.EmailAccountActivation,
+        //     )
+        // ) {
+        //     this.router.navigateByUrl(AppCompleteRoutesEnum.AuthRoot);
+        // } else {
+        //     this.emailAccountActivation = sessionStorage.getItem(
+        //         SessionStorageItemsEnum.EmailAccountActivation,
+        //     ) as string;
+        // }
     }
 
     onSubmit() {

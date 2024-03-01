@@ -1,6 +1,12 @@
-<a routerLink="/auth/login" routerLinkActive="active">Sign in</a>
-<div *ngIf="showSignupForm">
-    <form [formGroup]="form" class="signup-form">
+<main-form
+    [formGroup]="form"
+    [isLoading]="isLoading"
+    [onSubmitProp]="onSubmit"
+    submitButtonText="Register"
+    title="Create Account"
+    subtitle="Create an account quick with few steps"
+>
+    <div class="form-inputs-content">
         <form-field
             inputType="text"
             [hasLabel]="true"
@@ -25,16 +31,20 @@
             label="Password Confirmation"
             formControlName="passwordConfirmation"
         ></form-field>
-        <form-field-error-list
-            [errors]="signupAPIErrors"
-        ></form-field-error-list>
-        <button
-            class="signup-form-submit"
-            type="submit"
-            [disabled]="!form.valid || buttonDisabled"
-            (click)="onSubmit()"
+    </div>
+    <div class="form-body-content">
+        <p class="external-options-title">
+            <span>or Sign Up with</span>
+        </p>
+        <div class="external-options-container">
+            <external-signin signinType="GOOGLE"></external-signin>
+            <external-signin signinType="MICROSOFT"></external-signin>
+        </div>
+    </div>
+    <div class="form-footer-content">
+        <label class="login-message"> Already have an account? </label>
+        <a routerLink="/auth/account-activation" routerLinkActive="active"
+            >Sign In</a
         >
-            Sign Up
-        </button>
-    </form>
-</div>
+    </div>
+</main-form>

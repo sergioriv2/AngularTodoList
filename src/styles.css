@@ -15,6 +15,7 @@
     --yellow: #FF9800;
     --blue: #40A2E3;
     --purple: #6C22A6;
+    --purple-disabled: #9a84ac;
     --turquoise: #37B5B6;
     --pink: #D63484;
     --green: #65B741;
@@ -29,7 +30,7 @@
     --form-mobile-inputs-width: 280px;
     /* ----- Desktop (min-width: 425px) ----- */
     --desktop-font-size: 12px;
-    --form-desktop-container-width: 400px;
+    --form-desktop-container-width: 450px;
     --form-desktop-inputs-width: 330px;
 }
 

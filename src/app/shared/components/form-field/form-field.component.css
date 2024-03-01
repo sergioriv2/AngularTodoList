@@ -42,9 +42,10 @@
 .form-field-error-message {
     font-size: 12px;
     font-weight: 400;
-    margin-top: 10px;
+    margin-top: 5px;
     color: var(--red);
     word-wrap:break-word;
+
 }
 
 .form-field-input:focus:not(.form-field-error) {
@@ -77,7 +78,7 @@
 }
 
 .form-field {
-    margin: 10px 0;
+    margin-bottom: 20px;
     width: var(--form-mobile-inputs-width);
     max-width: var(--form-mobile-inputs-width);
 }
