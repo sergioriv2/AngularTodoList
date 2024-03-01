@@ -14,6 +14,7 @@ import { SessionStorageItemsEnum } from '../../../../common/enums/session-storag
 @Component({
     selector: 'account-activation-form',
     templateUrl: './account-activation-form.component.html',
+    styleUrl: './account-activation-form.component.css',
 })
 export class AccountActivationForm implements OnInit, OnDestroy {
     form!: FormGroup;
@@ -34,7 +35,14 @@ export class AccountActivationForm implements OnInit, OnDestroy {
     }
     ngOnInit(): void {
         this.form = this.formBuilder.group({
-            code: [this.formData.code, [Validators.required]],
+            code: [
+                this.formData.code,
+                [
+                    Validators.required,
+                    Validators.minLength(4),
+                    Validators.maxLength(4),
+                ],
+            ],
         });
 
         this.formValuesSubscription = this.form.valueChanges.subscribe(
@@ -54,6 +62,10 @@ export class AccountActivationForm implements OnInit, OnDestroy {
         //         SessionStorageItemsEnum.EmailAccountActivation,
         //     ) as string;
         // }
+    }
+
+    handleCodeChanges(value: string) {
+        this.form.get('code')?.setValue(value);
     }
 
     onSubmit() {

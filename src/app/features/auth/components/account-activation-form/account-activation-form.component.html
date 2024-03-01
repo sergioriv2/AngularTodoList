@@ -1,23 +1,14 @@
-<p>
-    Your user was successfully registered. Please activate your account with the
-    code we sent to your email.
-</p>
-<form [formGroup]="form" class="activate-account-form">
-    <form-field
-        inputType="text"
-        [hasLabel]="true"
-        label="Activation code"
-        formControlName="code"
-    ></form-field>
-    <button
-        class="signup-form-submit"
-        type="submit"
-        [disabled]="!form.valid"
-        (click)="onSubmit()"
-    >
-        Activate Account
-    </button>
-    <form-field-error-list
-        [errors]="activateAccountErrorList"
-    ></form-field-error-list>
-</form>
+<main-form
+    [formGroup]="form"
+    [onSubmitProp]="onSubmit"
+    title="Account Activate"
+    subtitle="We have sent a verification code to your inbox"
+    submitButtonText="Verify Code"
+>
+    <div class="form-inputs-content">
+        <code-input (codeChanged)="handleCodeChanges($event)"></code-input>
+    </div>
+    <div class="form-footer-content">
+        <p>This site is protected by reCAPTCHA and the Google Privacy Policy</p>
+    </div>
+</main-form>

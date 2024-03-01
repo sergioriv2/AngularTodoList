@@ -32,6 +32,7 @@ import {
 import { ExternalSignupOptionComponent } from './components/external-signup-option/external-signup-option.component';
 import { environment } from '../../../environments/environment';
 import { ExternalSignupService } from './services/external-signup.service';
+import { CodeInputModule } from 'angular-code-input';
 
 const SHARED_COMPONENTS: any = [
     LoginComponent,
@@ -100,6 +101,7 @@ const SHARED_COMPONENTS: any = [
         HttpClientModule,
         SocialLoginModule,
         GoogleSigninButtonModule,
+        CodeInputModule,
     ],
     exports: [...SHARED_COMPONENTS],
 })

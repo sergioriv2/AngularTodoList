@@ -32,7 +32,7 @@ and (orientation: landscape)
     width: var(--form-mobile-container-width);
     background-color: white;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
     border-radius: 10px;
     padding: 25px 0 35px 0px;
 }

@@ -1,0 +1,11 @@
+.form-inputs-content {
+    margin: 20px 0;
+}
+
+code-input {
+    --item-spacing: 15px;
+}
+
+.form-footer-content {
+    text-align: center;
+}
