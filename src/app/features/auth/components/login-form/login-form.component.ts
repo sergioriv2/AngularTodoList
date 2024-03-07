@@ -73,6 +73,7 @@ export class LoginFormComponent implements OnInit, OnDestroy {
 
         this.loginAPIErrors = [];
         this.formService.updateShouldShowErrors(false);
+
         this.isLoading = true;
         this.authService.logInUser(signinPayload).subscribe({
             next: (response) => {

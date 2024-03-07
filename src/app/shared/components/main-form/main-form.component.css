@@ -4,6 +4,7 @@
         justify-content: unset !important;
         box-shadow: 0px 0px 10px 5px var(--white-shadow);
         width: var(--form-desktop-container-width) !important;
+        margin: 100px 0;
     }
 
     .main-form > *:not(.external-options-container) {

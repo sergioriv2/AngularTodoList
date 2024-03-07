@@ -1,7 +1,7 @@
 <main-form
     [formGroup]="form"
     [isLoading]="isLoading"
-    [onSubmitProp]="onSubmit"
+    [onSubmitProp]="onSubmit.bind(this)"
     submitButtonText="Register"
     title="Create Account"
     subtitle="Create an account quick with few steps"
@@ -43,8 +43,6 @@
     </div>
     <div class="form-footer-content">
         <label class="login-message"> Already have an account? </label>
-        <a routerLink="/auth/account-activation" routerLinkActive="active"
-            >Sign In</a
-        >
+        <a routerLink="/auth/login" routerLinkActive="active">Log In</a>
     </div>
 </main-form>

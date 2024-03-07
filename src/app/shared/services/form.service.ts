@@ -3,13 +3,24 @@ import { BehaviorSubject } from 'rxjs';
 import { APILoginResponse } from '../../features/auth/models/auth-responses.interface';
 import { isStringArray } from '../../helpers/form-helpers';
 import { APIResponseError } from '../models/api-responses.interface';
+import { HttpClient } from '@angular/common/http';
+import { ValidateCaptchaResponse } from '../models/form-service-responses.interface';
 
 @Injectable()
 export class FormService {
     private shouldShowErrorsSource = new BehaviorSubject<boolean>(false);
     currenShouldShowErrorsState = this.shouldShowErrorsSource.asObservable();
 
-    constructor() {}
+    constructor(private readonly httpClient: HttpClient) {}
+
+    validateCaptchaTokenV3(token: string) {
+        return this.httpClient.post<ValidateCaptchaResponse>(
+            `auth/validate-recaptcha/`,
+            {
+                token,
+            },
+        );
+    }
 
     handleAPIFormErrors(error: any): string[] {
         let apiErrors: string[] = [];

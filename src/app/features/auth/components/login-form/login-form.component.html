@@ -1,7 +1,7 @@
 <main-form
     [formGroup]="form"
     [isLoading]="isLoading"
-    [onSubmitProp]="onSubmit"
+    [onSubmitProp]="onSubmit.bind(this)"
     submitButtonText="Sign In"
     title="Log In"
     subtitle="Let's get started saving those lists!"

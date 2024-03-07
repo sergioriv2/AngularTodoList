@@ -1,5 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+import { environment } from '../../../../environments/environment';
+import { ReCaptchaV3Service } from 'ng-recaptcha';
+import { FormService } from '../../services/form.service';
 
 @Component({
     selector: 'main-form',
@@ -15,9 +18,28 @@ export class MainFormComponent {
     @Input() isLoading?: boolean;
     @Input() submitButtonText!: string;
 
-    constructor(private readonly formBuilder: FormBuilder) {}
+    captchaSiteKey = environment.recaptcha.siteKey;
+
+    constructor(
+        private readonly recaptchaV3Service: ReCaptchaV3Service,
+        private readonly formService: FormService,
+    ) {
+        this.onSubmitProp = this.onSubmit.bind(this);
+    }
 
     async onSubmit(): Promise<any> {
-        await this.onSubmitProp();
+        // Validate captcha
+        this.recaptchaV3Service.execute('action').subscribe((captchaToken) => {
+            this.formService.validateCaptchaTokenV3(captchaToken).subscribe({
+                next: async () => {
+                    await this.onSubmitProp();
+                },
+                error: (error) => {
+                    console.log({
+                        captchaError: error,
+                    });
+                },
+            });
+        });
     }
 }
