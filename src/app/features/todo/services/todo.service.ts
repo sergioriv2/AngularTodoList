@@ -118,14 +118,14 @@ export class TodoService {
     async addTodo(newTodo: ITodoDetail): Promise<void> {
         const actualList = this.todoList.todoList;
 
-        for (let i = 0; i < 3; i++) {
-            if (
-                actualList[actualList.length - (i + 1)] &&
-                actualList[actualList.length - (i + 1)].color === newTodo.color
-            ) {
-                newTodo.color = this.generateRandomColor();
-            }
-        }
+        // for (let i = 0; i < 3; i++) {
+        //     if (
+        //         actualList[actualList.length - (i + 1)] &&
+        //         actualList[actualList.length - (i + 1)].color === newTodo.color
+        //     ) {
+        //         newTodo.color = this.generateRandomColor();
+        //     }
+        // }
 
         this.todoList.todoList.push(newTodo);
         this.todoSubject.next(this.todoList);

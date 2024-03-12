@@ -1,8 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ITodoDetail } from '../../interfaces/todo-details.interface';
 import { TodoService } from '../../services/todo.service';
-import { MatDialogRef } from '@angular/material/dialog';
-import { TodoFormDialogComponent } from '../todo-form-dialog/todo-form-dialog.component';
 
 @Component({
     selector: 'todo-details',

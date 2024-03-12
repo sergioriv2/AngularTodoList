@@ -1,18 +1,21 @@
-<div
-    [class]="
-        todoDetails.isInTrash
-            ? 'todo-details-container gray-border'
-            : ['todo-details-container', todoDetails.color].join(' ')
-    "
->
+<div class="todo-details-container">
     <div class="todo-details-body">
-        <div class="todo-details-date">
-            <p>{{ getDateString() }}</p>
+        <div class="todo-details-complete-handler">
+            <span
+                [class]="
+                    todoDetails.isComplete
+                        ? 'complete-handler complete-handler-done'
+                        : 'complete-handler'
+                "
+                (click)="updateTodoOnClick()"
+            >
+                <i
+                    *ngIf="todoDetails.isComplete"
+                    class="fas fa-check complete-handler-check"
+                ></i>
+            </span>
         </div>
-        <div class="todo-details" (click)="updateTodoOnClick()">
-            <p class="todo-details-id">
-                {{ todoDetails.id }}
-            </p>
+        <div class="todo-details">
             <p
                 class="todo-details-description"
                 [ngClass]="{ 'todo-completed': todoDetails.isComplete }"
@@ -20,19 +23,5 @@
                 {{ todoDetails.description }}
             </p>
         </div>
-        <div class="todo-details-trash-handler">
-            @if (todoDetails.isInTrash) {
-            <i
-                class="trash-handler fa-solid fa-rotate-left"
-                (click)="handleTodoThrashOnClick()"
-            ></i>
-            } @else {
-            <i
-                class="trash-handler fa-solid fa-trash"
-                (click)="handleTodoThrashOnClick()"
-            ></i>
-            }
-        </div>
     </div>
-    <!-- <div class="todo-details-body-triangle-right"></div> -->
 </div>

@@ -1,0 +1,13 @@
+.create-todo-button-container {
+    cursor: pointer;
+    margin-top: 40px !important;
+    margin-bottom: 0px !important;
+    padding: 10px 0 !important; 
+}
+
+.create-todo-button-label {
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--gray)
+}

@@ -1,0 +1,35 @@
+<div class="user-info">
+    <div class="user-info-image">
+        {{ userName.charAt(0) }}
+    </div>
+    <label class="user-info-name">{{ userName }}</label>
+</div>
+<div class="sidebar-body">
+    <div class="sidebar-item">
+        <ul class="sidebar-content-list">
+            <li class="sidebar-content-item">
+                <i class="far fa-calendar"></i>
+                <label>Today</label>
+            </li>
+            <li class="sidebar-content-item sidebar-item-active">
+                <i class="fas fa-calendar"></i>
+                <label>All</label>
+            </li>
+        </ul>
+    </div>
+    <div class="sidebar-item">
+        <ul class="sidebar-content-list">
+            <li class="sidebar-content-item">
+                <i class="fas fa-check-circle"></i>
+                <label>Completed</label>
+            </li>
+            <li class="sidebar-content-item">
+                <i class="fas fa-trash"></i>
+                <label>Trash</label>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="sidebar-footer">
+    <button class="signout-button" (click)="signOut()">Sign out</button>
+</div>

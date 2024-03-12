@@ -1,37 +1,16 @@
-<section class="todo-list-container">
-    <div class="todo-list-head">
-        <div class="list-name">
-            <p>{{ listName }}</p>
-        </div>
-        <div class="list-buttons-container">
-            <!-- <button (click)="logArray()">Check array</button> -->
-            <button
-                mat-raised-button
-                [disabled]="todoList.length === 0"
-                (click)="openTrashDialog()"
-                *ngIf="todoType === todoListTypes.Trash && todoList.length > 0"
-                class="list-button clean-trash-button"
-            >
-                Clean
-            </button>
-            <button
-                mat-raised-button
-                class="list-button restore-thrash-button"
-                [disabled]="todoList.length === 0"
-                (click)="restoreTodosInTrash()"
-                *ngIf="todoType === todoListTypes.Trash && todoList.length > 0"
-            >
-                Restore All
-            </button>
-        </div>
+<div class="todo-list-head">
+    <div class="list-dates">
+        <label class="list-date">{{ dateLabel }}</label>
+        <label class="list-date-day">{{ dateWeekday }}</label>
     </div>
-    <div class="todo-list-body" *ngIf="todoList.length > 0">
-        <ul>
-            @for (item of todoList; track $index) {
-            <li>
-                <todo-details [todoDetails]="item"></todo-details>
-            </li>
-            }
-        </ul>
-    </div>
-</section>
+</div>
+<div class="todo-list-body" *ngIf="todoList.length > 0">
+    <ul>
+        @for (item of todoList; track $index) {
+        <li>
+            <todo-details [todoDetails]="item"></todo-details>
+        </li>
+        }
+    </ul>
+</div>
+<create-todo-button [dateDetails]="dateDetails"></create-todo-button>

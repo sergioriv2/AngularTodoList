@@ -2,24 +2,66 @@
     visibility: hidden !important;
 }
 
-.todo-list-container{
-    min-width: 300px;
-    max-width: 500px;
-    min-height: 140px;
-    margin-bottom: 50px;
+:host {
+    width: 100%;
+    min-height: 100vh;
+
+    border: none;
+    border-radius: 10px;
+    padding: 25px 20px;
+    display: inline-block;
+}
+
+@media screen and (min-width: 768px) {
+    :host {
+        margin-left: 15px;
+        margin-right: 15px;
+        padding: 25px 20px;
+        width: 300px;
+        border: 2px solid var(--white-shadow);
+        min-height: 140px;
+    }
 }
 
 .todo-list-head {
-    min-height: 100px;
+    margin-bottom: 10px;
 }
 
-.list-name{
-    font-weight: 300;
-    font-size: 30px;
-    margin: 0 0 20px 0;
+.list-dates {
+    display: flex;
+    flex-direction: column;
 }
 
-.list-name p {
+.list-dates .list-date {
+    font-weight: 500;
+}
+
+.list-dates .list-date, .list-dates .list-date-day  {
+    font-size: 17px;
+}
+
+.list-dates .list-date-day {
+    font-weight: 400;
+    font-size: 13px;
+    color: var(--dark-gray);
+}
+
+@media screen and (min-width: 768px) {
+    .list-dates {
+        flex-direction: row;
+    }
+
+    .list-dates .list-date, .list-dates .list-date-day  {
+        font-size: 15px;
+    }
+
+    .list-dates .list-date-day {
+        margin-left: 4px;
+        font-size: 15px;
+    }
+}
+
+.list-dates > * {
     margin: 0;
 }
 
@@ -36,7 +78,7 @@
     /* color: var(--light) !important; */
 }
 
-.todo-list-container ul {
+:host ul {
     list-style: none;
     margin: 0 auto;
     padding: 0;

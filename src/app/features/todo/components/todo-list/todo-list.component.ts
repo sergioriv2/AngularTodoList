@@ -1,19 +1,24 @@
-import { Component, Input, OnDestroy } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ITodoDetail } from '../../interfaces/todo-details.interface';
 import { TodoService } from '../../services/todo.service';
 import { TodoListTypes } from '../../../../common/enums/todo-list-types.enum';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { TodoCleanDialogComponent } from '../todo-clean-dialog/todo-clean-dialog.component';
 import { Subscription } from 'rxjs';
+import dayjs from 'dayjs';
+
+const today = new Date();
+const yesterday = dayjs(new Date()).subtract(1, 'day').toDate();
+const tomorrow = dayjs(new Date()).add(1, 'day').toDate();
 
 @Component({
     selector: 'todo-list',
     templateUrl: './todo-list.component.html',
     styleUrl: './todo-list.component.css',
 })
-export class TodoListComponent implements OnDestroy {
+export class TodoListComponent implements OnDestroy, OnInit {
     @Input()
-    listName!: string;
+    dateDetails!: string;
 
     @Input()
     todoList: ITodoDetail[] = [];
@@ -24,19 +29,42 @@ export class TodoListComponent implements OnDestroy {
     todoListTypes = TodoListTypes;
     private listSubscription: Subscription;
 
+    dateWeekday!: string;
+    dateLabel!: string;
+
     constructor(
         private cleanTrashDialog: MatDialog,
         private readonly todoService: TodoService,
     ) {
         this.listSubscription = this.todoService.todoList$.subscribe({
             next: (lists) => {
-                this.todoList =
-                    this.todoType === TodoListTypes.Todo
-                        ? lists.todoList
-                        : lists.trashList;
+                this.todoList = lists.todoList;
             },
         });
     }
+
+    ngOnInit(): void {
+        const isDateToday =
+            this.dateDetails === dayjs(today).format('MM-DD-YYYY');
+        const isDateTomorrow =
+            this.dateDetails === dayjs(tomorrow).format('MM-DD-YYYY');
+        const isDateYesterday =
+            this.dateDetails === dayjs(yesterday).format('MM-DD-YYYY');
+
+        this.dateWeekday = dayjs(this.dateDetails).format('dddd DD');
+
+        if (isDateToday) {
+            this.dateLabel = 'Today';
+        } else if (isDateTomorrow) {
+            this.dateLabel = 'Tomorrow';
+        } else if (isDateYesterday) {
+            this.dateLabel = 'Yesterday';
+        } else {
+            this.dateLabel = dayjs(this.dateDetails).format('dddd');
+            this.dateWeekday = dayjs(this.dateDetails).format('MMM DD');
+        }
+    }
+
     ngOnDestroy(): void {
         this.listSubscription.unsubscribe();
     }

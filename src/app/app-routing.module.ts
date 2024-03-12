@@ -13,7 +13,7 @@ const routes: Routes = [
     },
     {
         path: AppRoutesEnum.App,
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         loadChildren: () =>
             import('./features/todo/todo.module').then((x) => x.TodoModule),
     },

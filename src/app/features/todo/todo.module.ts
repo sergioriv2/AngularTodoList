@@ -13,6 +13,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { TodoCleanDialogComponent } from './components/todo-clean-dialog/todo-clean-dialog.component';
 import { AuthService } from '../auth/services/auth.service';
 import { TodoRoutingModule } from './todo.routing-module';
+import { CreateTodoButton } from './components/create-todo-button/create-todo-button.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { provideNativeDateAdapter } from '@angular/material/core';
+import { ResponsiveSidebar } from './components/responsive-sidebar/responsive-sidebar.component ';
 
 const SHARED_COMPONENTS = [
     TodoDetailsComponent,
@@ -20,11 +24,13 @@ const SHARED_COMPONENTS = [
     TodoListComponent,
     TodoFormDialogComponent,
     TodoCleanDialogComponent,
+    CreateTodoButton,
+    ResponsiveSidebar,
 ];
 
 @NgModule({
     declarations: [...SHARED_COMPONENTS],
-    providers: [TodoService, AuthService],
+    providers: [TodoService, AuthService, provideNativeDateAdapter()],
     imports: [
         TodoRoutingModule,
         CommonModule,
@@ -33,6 +39,7 @@ const SHARED_COMPONENTS = [
         MatInputModule,
         MatDialogModule,
         MatButtonModule,
+        MatDatepickerModule,
     ],
     exports: [...SHARED_COMPONENTS],
 })

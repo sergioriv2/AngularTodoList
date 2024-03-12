@@ -1,36 +1,25 @@
+<responsive-sidebar></responsive-sidebar>
 <div class="todo-main-container">
-    <!-- <form
-        class="list-form"
-        [formGroup]="todosAddForm"
-        (ngSubmit)="onTodosAddSubmit()"
-    >
-   
-    </form> -->
-    <div class="todo-main-create-button">
-        <button mat-raised-button (click)="openDialog()">Create Todo</button>
-    </div>
-    <div
-        *ngIf="
-            todoList.todoList.length === 0 && todoList.trashList.length === 0
-        "
-        class="list-message-placeholder"
-    >
-        <p>There's nothing to show for now... Let's write ideas!</p>
-    </div>
-    <div
-        *ngIf="todoList.todoList.length > 0 || todoList.trashList.length > 0"
-        class="list-main-body"
-    >
-        <todo-list
-            [todoList]="todoList.todoList"
-            [todoType]="todoListTypes.Todo"
-            [listName]="'To Do List'"
-        ></todo-list>
-        <todo-list
-            [todoList]="todoList.trashList"
-            [todoType]="todoListTypes.Trash"
-            [listName]="'Trash List'"
-        ></todo-list>
-    </div>
-    <button mat-raised-button (click)="signOut()">Sign out</button>
+    <!-- <div
+            *ngIf="
+                todoList.todoList.length === 0 && todoList.trashList.length === 0
+            "
+            class="list-message-placeholder"
+        >
+            <p>There's nothing to show for now... Let's write ideas!</p>
+        </div> -->
+
+    @if (appTodoListsKeys.length === 0) {
+    <todo-list
+        [todoList]="[]"
+        [todoType]="todoListTypes.Todo"
+        [dateDetails]="'03-11-2024'"
+    ></todo-list>
+    } @else { @for (listKey of appTodoListsKeys; track $index) {
+    <todo-list
+        [todoList]="appTodoLists[listKey]"
+        [todoType]="todoListTypes.Todo"
+        [dateDetails]="listKey"
+    ></todo-list>
+    } }
 </div>

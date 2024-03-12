@@ -17,16 +17,24 @@ import { generateRandomNumber } from '../../../../helpers/generate-random-number
 export class TodoFormDialogComponent implements OnInit {
     form!: FormGroup;
     description: string;
+    createdAt: Date;
 
     constructor(
+        @Inject(MAT_DIALOG_DATA)
+        public data: any,
         private fb: FormBuilder,
         public dialogRef: MatDialogRef<TodoFormDialogComponent>,
         private readonly todoService: TodoService,
     ) {
         this.description = '';
+        this.createdAt = new Date();
     }
 
     ngOnInit(): void {
+        if (this.data?.dateDetails) {
+            this.createdAt = new Date(this.data.dateDetails);
+        }
+
         this.form = this.fb.group({
             description: [
                 this.description,
@@ -36,6 +44,7 @@ export class TodoFormDialogComponent implements OnInit {
                     Validators.minLength(1),
                 ],
             ],
+            createdAt: [this.createdAt],
         });
     }
 
@@ -46,8 +55,7 @@ export class TodoFormDialogComponent implements OnInit {
                 description: this.form.controls['description'].value ?? '',
                 isComplete: false,
                 isInTrash: false,
-                color: this.todoService.generateRandomColor(),
-                createdAt: new Date(),
+                createdAt: this.form.controls['createdAt'].value,
             };
 
             await this.todoService.addTodo(newTodo);

@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
     standalone: false,
 })
 export class AppComponent {
-    title = 'Angular Todo List';
+    title = 'Todo List';
 }

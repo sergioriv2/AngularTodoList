@@ -1,80 +1,30 @@
 .todo-main-container {
-    max-width: 100%;
-    min-height: 600px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.todo-main-create-button {
-    max-width: 300px;
-    margin-bottom: 30px;
-}
-
-.list-main-body {
-    display: flex;
-    max-width: 300px;
-    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    display: inline-block;
+    flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
-    margin: 0 0 20px 0;
 }
 
-@media screen and (min-width: 1024px) {
-    .list-main-body {
-        flex-direction: row;
-        justify-content: space-between;
-        width: 60%;
-        max-width: none;
+:host {
+    display: block;
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+}
+
+
+
+@media screen and (min-width: 768px) {
+    :host {
+        display: inline-flex;
     }
 
-    .todo-main-create-button {
-        width: 60%;
-        max-width: none;
+    .todo-main-container {
+        padding: 20px 40px;
+        display: inline-flex;
     }
 }
-
-.list-form{
-    min-width: 300px;
-    display: flex;
-    flex-direction: row;
-    margin: 20px 0;
-}
-
-@media screen and(min-width: 1024px) {
-    .list-form{
-        background-color: red;
-    }
-}
-
-.list-form input { /* Añadiendo el estado focus */
-    background-color: var(--white);
-    border: 3px solid var(--dark-green);
-    color: var(--dark);
-    outline: none;
-    min-width: 180;
-    height: 40px;
-    border-radius: 100px;
-    font-weight: 400;
-    padding-left: 20px;
-    margin-right: 20px;
-}
-
-.list-form input {
-    font-weight: 400;
-}
-
-.list-message-placeholder {
-    text-align: center;
-    font-weight: 100;
-    min-height: 200px;
-    color: var(--blue);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
 
