@@ -1,0 +1,5 @@
+<h1 class="lists-title">Trash List</h1>
+@for (listKey of appTrashListsKeys; track $index) { @if (trashLists &&
+trashLists[listKey]) {
+<todo-list [todoList]="trashLists[listKey]" [dateDetails]="listKey"></todo-list>
+} }

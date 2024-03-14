@@ -22,10 +22,7 @@ export class TodoViewComponent {
 
     private todoListsSubscription: Subscription;
 
-    constructor(
-        private readonly router: Router,
-        private readonly todoService: TodoService,
-    ) {
+    constructor(private readonly todoService: TodoService) {
         // Init variables
         this.appTodoLists = {};
         this.appTodoListsKeys = [];

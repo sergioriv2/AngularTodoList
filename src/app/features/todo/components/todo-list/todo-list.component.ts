@@ -16,7 +16,7 @@ const tomorrow = dayjs(new Date()).add(1, 'day').toDate();
     templateUrl: './todo-list.component.html',
     styleUrl: './todo-list.component.css',
 })
-export class TodoListComponent implements OnDestroy, OnInit {
+export class TodoListComponent implements OnInit {
     @Input()
     dateDetails!: string;
 
@@ -24,23 +24,9 @@ export class TodoListComponent implements OnDestroy, OnInit {
     todoList: ITodoDetail[] = [];
 
     todoListTypes = TodoListTypes;
-    private listSubscription: Subscription;
 
     dateWeekday!: string;
     dateLabel!: string;
-
-    constructor(private readonly todoService: TodoService) {
-        this.listSubscription = this.todoService.todoList$.subscribe({
-            next: (lists) => {
-                console.log({
-                    lists,
-                });
-                // if (lists[this.dateDetails]) {
-                //     this.todoList = lists[this.dateDetails];
-                // }
-            },
-        });
-    }
 
     ngOnInit(): void {
         const isDateToday =
@@ -62,10 +48,6 @@ export class TodoListComponent implements OnDestroy, OnInit {
             this.dateLabel = dayjs(this.dateDetails).format('dddd');
             this.dateWeekday = dayjs(this.dateDetails).format('MMM DD');
         }
-    }
-
-    ngOnDestroy(): void {
-        this.listSubscription.unsubscribe();
     }
 
     // transformTodoList() {

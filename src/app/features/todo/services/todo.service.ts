@@ -121,7 +121,12 @@ export class TodoService {
         const itemDate = dayjs(newTodo.createdAt).format('MM-DD-YYYY');
         const itemList = this.appLists[itemDate];
 
-        itemList.push(newTodo);
+        if (itemList) {
+            itemList.push(newTodo);
+        } else {
+            this.appLists[itemDate] = [newTodo];
+        }
+
         this.todoSubject.next(this.appLists);
         return Promise.resolve();
     }

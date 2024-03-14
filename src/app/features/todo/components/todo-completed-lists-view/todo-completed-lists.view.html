@@ -1,0 +1,8 @@
+<h1 class="lists-title">Completed Tasks</h1>
+@for (listKey of appCompletedListsKeys; track $index) { @if (completedLists &&
+completedLists[listKey]) {
+<todo-list
+    [todoList]="completedLists[listKey]"
+    [dateDetails]="listKey"
+></todo-list>
+} }

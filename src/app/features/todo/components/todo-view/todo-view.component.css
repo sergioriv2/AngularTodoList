@@ -1,4 +1,4 @@
-.todo-main-container {
+:host {
     width: 100%;
     height: auto;
     min-height: 100vh;
@@ -15,6 +15,18 @@
     min-height: 100vh;
 }
 
+.lists-title {
+    margin: 0 20px;
+    font-weight: 500;
+    color: var(--yellow);
+    font-size: 23px;
+}
+
+@media screen and (min-width: 768px) {
+    .lists-title {
+        display: none;
+    }
+}
 
 
 @media screen and (min-width: 768px) {
@@ -22,7 +34,7 @@
         display: inline-flex;
     }
 
-    .todo-main-container {
+    :host {
         padding: 20px 40px;
         display: inline-flex;
     }

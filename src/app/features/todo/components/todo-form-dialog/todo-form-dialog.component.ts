@@ -13,6 +13,7 @@ import { generateRandomNumber } from '../../../../helpers/generate-random-number
 @Component({
     selector: 'todo-form-dialog',
     templateUrl: './todo-form-dialog.component.html',
+    styleUrl: './todo-form-dialog.component.css',
 })
 export class TodoFormDialogComponent implements OnInit {
     form!: FormGroup;

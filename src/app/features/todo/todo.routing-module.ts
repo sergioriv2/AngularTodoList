@@ -14,14 +14,23 @@ const routes: Route[] = [
             {
                 path: AppRoutesEnum.TodoList,
                 component: TodoViewComponent,
+                data: {
+                    animation: 'TodoList',
+                },
             },
             {
                 path: AppRoutesEnum.CompletedLists,
                 component: TodoCompletedListsView,
+                data: {
+                    animation: 'CompleteList',
+                },
             },
             {
                 path: AppRoutesEnum.TrashLists,
                 component: TodoTrashListView,
+                data: {
+                    animation: 'TrashList',
+                },
             },
             {
                 path: AppRoutesEnum.Blank,

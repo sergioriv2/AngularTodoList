@@ -1,3 +1,5 @@
-<responsive-headbar></responsive-headbar>
-<responsive-sidebar></responsive-sidebar>
-<router-outlet></router-outlet>
+<div class="container" [@routeAnimations]="getRoutesAnimationData()">
+    <responsive-headbar></responsive-headbar>
+    <responsive-sidebar></responsive-sidebar>
+    <router-outlet></router-outlet>
+</div>
