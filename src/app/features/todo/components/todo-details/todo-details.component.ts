@@ -19,10 +19,10 @@ export class TodoDetailsComponent {
         await this.todoService.updateTodoList(this.todoDetails);
     }
 
-    async handleTodoThrashOnClick() {
-        if (this.todoDetails?.id === undefined) return;
-        await this.todoService.handleTodoTrash(this.todoDetails);
-    }
+    // async handleTodoThrashOnClick() {
+    //     if (this.todoDetails?.id === undefined) return;
+    //     await this.todoService.handleTodoTrash(this.todoDetails);
+    // }
 
     getDateString() {
         // return ;

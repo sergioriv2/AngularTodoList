@@ -23,22 +23,21 @@ export class TodoListComponent implements OnDestroy, OnInit {
     @Input()
     todoList: ITodoDetail[] = [];
 
-    @Input()
-    todoType!: TodoListTypes;
-
     todoListTypes = TodoListTypes;
     private listSubscription: Subscription;
 
     dateWeekday!: string;
     dateLabel!: string;
 
-    constructor(
-        private cleanTrashDialog: MatDialog,
-        private readonly todoService: TodoService,
-    ) {
+    constructor(private readonly todoService: TodoService) {
         this.listSubscription = this.todoService.todoList$.subscribe({
             next: (lists) => {
-                this.todoList = lists.todoList;
+                console.log({
+                    lists,
+                });
+                // if (lists[this.dateDetails]) {
+                //     this.todoList = lists[this.dateDetails];
+                // }
             },
         });
     }
@@ -69,51 +68,51 @@ export class TodoListComponent implements OnDestroy, OnInit {
         this.listSubscription.unsubscribe();
     }
 
-    transformTodoList() {
-        this.todoList = this.todoList.map((el) => {
-            return {
-                ...el,
-                isInTrash: this.todoType === TodoListTypes.Trash,
-            };
-        });
-    }
+    // transformTodoList() {
+    //     this.todoList = this.todoList.map((el) => {
+    //         return {
+    //             ...el,
+    //             isInTrash: this.todoType === TodoListTypes.Trash,
+    //         };
+    //     });
+    // }
 
-    openTrashDialog() {
-        const dialogConfig = new MatDialogConfig();
-        dialogConfig.disableClose = true;
-        dialogConfig.autoFocus = true;
+    // openTrashDialog() {
+    //     const dialogConfig = new MatDialogConfig();
+    //     dialogConfig.disableClose = true;
+    //     dialogConfig.autoFocus = true;
 
-        const dialogRef = this.cleanTrashDialog.open(TodoCleanDialogComponent, {
-            data: {
-                todoType: this.todoType,
-                todoList: this.todoList,
-            },
-        });
-        dialogRef.afterClosed().subscribe((result: ITodoDetail[]) => {
-            if (result) {
-                this.todoList = result;
-            }
-        });
-    }
+    //     const dialogRef = this.cleanTrashDialog.open(TodoCleanDialogComponent, {
+    //         data: {
+    //             todoType: this.todoType,
+    //             todoList: this.todoList,
+    //         },
+    //     });
+    //     dialogRef.afterClosed().subscribe((result: ITodoDetail[]) => {
+    //         if (result) {
+    //             this.todoList = result;
+    //         }
+    //     });
+    // }
 
-    async restoreTodosInTrash() {
-        if (this.todoType === TodoListTypes.Trash) {
-            const allTodosList = await this.todoService.getAllTodosList();
-            const concatenatedList = allTodosList.todoList.concat(
-                allTodosList.trashList.map((el) => {
-                    return {
-                        ...el,
-                        isInTrash: false,
-                    };
-                }),
-            );
+    // async restoreTodosInTrash() {
+    //     if (this.todoType === TodoListTypes.Trash) {
+    //         const allTodosList = await this.todoService.getAllTodosList();
+    //         const concatenatedList = allTodosList.todoList.concat(
+    //             allTodosList.trashList.map((el) => {
+    //                 return {
+    //                     ...el,
+    //                     isInTrash: false,
+    //                 };
+    //             }),
+    //         );
 
-            await this.todoService.setTodoList({
-                todoList: concatenatedList,
-                trashList: [],
-            });
+    //         await this.todoService.setTodoList({
+    //             todoList: concatenatedList,
+    //             trashList: [],
+    //         });
 
-            this.todoList = [];
-        } else return;
-    }
+    //         this.todoList = [];
+    //     } else return;
+    // }
 }

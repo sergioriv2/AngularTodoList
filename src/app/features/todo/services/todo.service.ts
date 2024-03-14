@@ -1,19 +1,26 @@
 import { Injectable } from '@angular/core';
-import { ITodoDetail, ITodoLists } from '../interfaces/todo-details.interface';
+import {
+    IAppTodoLists,
+    ITodoDetail,
+    ITodoLists,
+} from '../interfaces/todo-details.interface';
 import { BehaviorSubject } from 'rxjs';
 import { SetTodoListDto } from '../dtos/todo-details.dto';
 import { TodoColors } from '../../../common/enums/todo-colors.enum';
+import { LocalStorageItemsEnum } from '../../../common/enums/local-storage.enum';
+import dayjs from 'dayjs';
 
 @Injectable()
 export class TodoService {
-    private todoList!: ITodoLists;
-    private todoSubject = new BehaviorSubject<ITodoLists>(this.todoList);
+    private appLists!: IAppTodoLists;
+    private todoSubject = new BehaviorSubject<IAppTodoLists>(this.appLists);
     public todoList$ = this.todoSubject.asObservable();
 
     constructor() {
-        this.todoList = {
-            trashList: [],
-            todoList: [],
+        const today = dayjs(new Date()).format('MM-DD-YYYY');
+
+        this.appLists = {
+            [today]: [],
         };
     }
 
@@ -29,106 +36,93 @@ export class TodoService {
         ].toString();
     }
 
-    async setTodoList(todoListToSet: SetTodoListDto): Promise<boolean> {
-        this.todoList = {
-            ...this.todoList,
-            ...todoListToSet,
-        };
+    async setTodoList(todoListToSet: IAppTodoLists): Promise<boolean> {
+        this.appLists = todoListToSet;
 
-        this.todoSubject.next(this.todoList);
+        this.todoSubject.next(this.appLists);
         return Promise.resolve(true);
     }
 
-    async handleTodoTrash(todo: ITodoDetail): Promise<boolean> {
-        if (!todo.isInTrash) {
-            const todoIndexToUpdate = this.todoList.todoList.findIndex(
-                (el) => todo.id === el.id,
-            );
+    // async handleTodoTrash(todo: ITodoDetail): Promise<boolean> {
+    //     if (!todo.isInTrash) {
+    //         const todoIndexToUpdate = this.todoList.todoList.findIndex(
+    //             (el) => todo.id === el.id,
+    //         );
 
-            if (todoIndexToUpdate !== -1) {
-                this.todoList.todoList.splice(todoIndexToUpdate, 1);
-                this.todoList.trashList.push({
-                    ...todo,
-                    isInTrash: true,
-                });
+    //         if (todoIndexToUpdate !== -1) {
+    //             this.todoList.todoList.splice(todoIndexToUpdate, 1);
+    //             this.todoList.trashList.push({
+    //                 ...todo,
+    //                 isInTrash: true,
+    //             });
 
-                this.todoSubject.next(this.todoList);
-            }
-        } else {
-            const todoIndexToUpdate = this.todoList.trashList.findIndex(
-                (el) => todo.id === el.id,
-            );
+    //             this.todoSubject.next(this.todoList);
+    //         }
+    //     } else {
+    //         const todoIndexToUpdate = this.todoList.trashList.findIndex(
+    //             (el) => todo.id === el.id,
+    //         );
 
-            if (todoIndexToUpdate !== -1) {
-                this.todoList.trashList.splice(todoIndexToUpdate, 1);
-                this.todoList.todoList.push({
-                    ...todo,
-                    isInTrash: false,
-                });
-                this.todoSubject.next(this.todoList);
-            }
-        }
+    //         if (todoIndexToUpdate !== -1) {
+    //             this.todoList.trashList.splice(todoIndexToUpdate, 1);
+    //             this.todoList.todoList.push({
+    //                 ...todo,
+    //                 isInTrash: false,
+    //             });
+    //             this.todoSubject.next(this.todoList);
+    //         }
+    //     }
 
-        return Promise.resolve(true);
-    }
+    //     return Promise.resolve(true);
+    // }
 
-    async getTodosFromLocalStorage(): Promise<ITodoDetail[]> {
-        const savedData = window.localStorage.getItem('todo-list');
-        const savedTrashData = window.localStorage.getItem('todo-trash-list');
-
-        if (savedData) {
-            this.todoList.todoList = JSON.parse(savedData);
-        }
-
-        if (savedTrashData) {
-            this.todoList.trashList = JSON.parse(savedTrashData);
-        }
-
-        this.todoSubject.next(this.todoList);
-        return Promise.resolve(this.todoList.todoList);
-    }
-
-    async getTodos(): Promise<ITodoDetail[]> {
-        this.todoSubject.next(this.todoList);
-        return Promise.resolve(this.todoList.todoList);
-    }
-
-    async getAllTodosList(): Promise<ITodoLists> {
-        return Promise.resolve(this.todoList);
-    }
-
-    async getTodo(id: number): Promise<ITodoDetail | undefined> {
-        return Promise.resolve(
-            this.todoList.todoList.find((el) => el.id === id),
+    async getTodosFromLocalStorage(): Promise<IAppTodoLists> {
+        const savedAppLists = window.localStorage.getItem(
+            LocalStorageItemsEnum.APP_LISTS,
         );
+
+        if (savedAppLists) this.appLists = JSON.parse(savedAppLists);
+
+        return Promise.resolve(this.appLists);
     }
 
-    async updateTodoList(todoToUpdate: ITodoDetail): Promise<ITodoDetail[]> {
-        const todoIndexToFind = this.todoList.todoList.findIndex(
+    async getTodos(): Promise<IAppTodoLists> {
+        this.todoSubject.next(this.appLists);
+        return Promise.resolve(this.appLists);
+    }
+
+    // async getAllTodosList(): Promise<IAppTodoLists> {
+    //     return Promise.resolve(this.appLists);
+    // }
+
+    // async getTodo(id: number): Promise<ITodoDetail | undefined> {
+    //     return Promise.resolve(
+    //         this.todoList.todoList.find((el) => el.id === id),
+    //     );
+    // }
+
+    async updateTodoList(todoToUpdate: ITodoDetail): Promise<IAppTodoLists> {
+        const itemDate = dayjs(todoToUpdate.createdAt).format('MM-DD-YYYY');
+        const itemList = this.appLists[itemDate];
+
+        const todoIndexToFind = itemList.findIndex(
             (el) => el.id === todoToUpdate.id,
         );
+
         if (todoIndexToFind !== -1) {
-            this.todoList.todoList[todoIndexToFind] = todoToUpdate;
-            this.todoSubject.next(this.todoList);
+            itemList[todoIndexToFind] = todoToUpdate;
+            this.todoSubject.next(this.appLists);
         }
 
-        return Promise.resolve(this.todoList.todoList);
+        return Promise.resolve(this.appLists);
     }
 
     async addTodo(newTodo: ITodoDetail): Promise<void> {
-        const actualList = this.todoList.todoList;
+        const itemDate = dayjs(newTodo.createdAt).format('MM-DD-YYYY');
+        const itemList = this.appLists[itemDate];
 
-        // for (let i = 0; i < 3; i++) {
-        //     if (
-        //         actualList[actualList.length - (i + 1)] &&
-        //         actualList[actualList.length - (i + 1)].color === newTodo.color
-        //     ) {
-        //         newTodo.color = this.generateRandomColor();
-        //     }
-        // }
-
-        this.todoList.todoList.push(newTodo);
-        this.todoSubject.next(this.todoList);
+        itemList.push(newTodo);
+        this.todoSubject.next(this.appLists);
         return Promise.resolve();
     }
 }

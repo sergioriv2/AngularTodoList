@@ -2,7 +2,15 @@
     cursor: pointer;
     margin-top: 40px !important;
     margin-bottom: 0px !important;
-    padding: 10px 0 !important; 
+    padding: 10px 0 !important;
+}
+
+@media screen and (min-width: 768px) { 
+    .create-todo-button-container {
+        min-width: 256px;
+        max-width: 256px;
+    }
+    
 }
 
 .create-todo-button-label {

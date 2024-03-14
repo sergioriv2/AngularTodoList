@@ -31,18 +31,17 @@ export class TodoCleanDialogComponent implements OnInit {
     }
 
     async cleanTrash() {
-        if (this.todoType === TodoListTypes.Todo) {
-            await this.todoService.setTodoList({
-                todoList: [],
-            });
-            this.todoList = [];
-        } else {
-            await this.todoService.setTodoList({
-                trashList: [],
-            });
-            this.todoList = [];
-        }
-
-        this.dialogRef.close([]);
+        // if (this.todoType === TodoListTypes.Todo) {
+        //     await this.todoService.setTodoList({
+        //         todoList: [],
+        //     });
+        //     this.todoList = [];
+        // } else {
+        //     await this.todoService.setTodoList({
+        //         trashList: [],
+        //     });
+        //     this.todoList = [];
+        // }
+        // this.dialogRef.close([]);
     }
 }

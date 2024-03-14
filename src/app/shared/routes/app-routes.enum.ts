@@ -3,7 +3,10 @@ export enum AppRoutesEnum {
     Blank = '',
     // App routes
     App = 'app',
-    TodoList = 'todo-list',
+    TodoList = 'todo-lists',
+    TrashLists = 'todo-lists/trash',
+    CompletedLists = 'todo-lists/completed',
+
     // Auth routes
     Auth = 'auth',
     Login = 'login',
@@ -15,6 +18,8 @@ export enum AppCompleteRoutesEnum {
     // App Routes
     AppRoot = AppRoutesEnum.App,
     TodoList = `${AppRoutesEnum.App}/${AppRoutesEnum.TodoList}`,
+    TrashLists = `${AppRoutesEnum.App}/${AppRoutesEnum.TrashLists}`,
+    CompletedLists = `${AppRoutesEnum.App}/${AppRoutesEnum.CompletedLists}`,
 
     // Auth Routes
     AuthRoot = AppRoutesEnum.Auth,

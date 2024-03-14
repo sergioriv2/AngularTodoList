@@ -5,30 +5,29 @@
     <label class="user-info-name">{{ userName }}</label>
 </div>
 <div class="sidebar-body">
+    @for (option of sidebarOptions; track $index) {
     <div class="sidebar-item">
         <ul class="sidebar-content-list">
-            <li class="sidebar-content-item">
-                <i class="far fa-calendar"></i>
-                <label>Today</label>
+            @for (optionItem of option; track $index) {
+            <li>
+                <a
+                    class="sidebar-content-item"
+                    [routerLink]="optionItem.linkTo"
+                    routerLinkActive="sidebar-item-active"
+                    [routerLinkActiveOptions]="{
+                        exact: true
+                    }"
+                >
+                    <i [class]="optionItem.faClass"></i>
+                    <label>
+                        {{ optionItem.name }}
+                    </label>
+                </a>
             </li>
-            <li class="sidebar-content-item sidebar-item-active">
-                <i class="fas fa-calendar"></i>
-                <label>All</label>
-            </li>
+            }
         </ul>
     </div>
-    <div class="sidebar-item">
-        <ul class="sidebar-content-list">
-            <li class="sidebar-content-item">
-                <i class="fas fa-check-circle"></i>
-                <label>Completed</label>
-            </li>
-            <li class="sidebar-content-item">
-                <i class="fas fa-trash"></i>
-                <label>Trash</label>
-            </li>
-        </ul>
-    </div>
+    }
 </div>
 <div class="sidebar-footer">
     <button class="signout-button" (click)="signOut()">Sign out</button>

@@ -2,10 +2,14 @@
     visibility: hidden !important;
 }
 
+.todo-list-body {
+    min-height: 80%;
+}
+
 :host {
     width: 100%;
     min-height: 100vh;
-
+    height: 100vh;
     border: none;
     border-radius: 10px;
     padding: 25px 20px;
@@ -14,10 +18,11 @@
 
 @media screen and (min-width: 768px) {
     :host {
-        margin-left: 15px;
+        height: auto;
         margin-right: 15px;
         padding: 25px 20px;
-        width: 300px;
+        min-width: 300px;
+        max-width: 300px;
         border: 2px solid var(--white-shadow);
         min-height: 140px;
     }
@@ -36,13 +41,16 @@
     font-weight: 500;
 }
 
-.list-dates .list-date, .list-dates .list-date-day  {
-    font-size: 17px;
+.list-date  {
+    font-size: 24px;
+}
+
+.list-date-day {
+    font-size: 15px !important;
 }
 
 .list-dates .list-date-day {
     font-weight: 400;
-    font-size: 13px;
     color: var(--dark-gray);
 }
 

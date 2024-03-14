@@ -1,4 +1,3 @@
-<responsive-sidebar></responsive-sidebar>
 <div class="todo-main-container">
     <!-- <div
             *ngIf="
@@ -10,15 +9,11 @@
         </div> -->
 
     @if (appTodoListsKeys.length === 0) {
-    <todo-list
-        [todoList]="[]"
-        [todoType]="todoListTypes.Todo"
-        [dateDetails]="'03-11-2024'"
-    ></todo-list>
+
+    <create-todo-button />
     } @else { @for (listKey of appTodoListsKeys; track $index) {
     <todo-list
         [todoList]="appTodoLists[listKey]"
-        [todoType]="todoListTypes.Todo"
         [dateDetails]="listKey"
     ></todo-list>
     } }

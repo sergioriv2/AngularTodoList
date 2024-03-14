@@ -6,10 +6,10 @@ import {
 } from '../../interfaces/todo-details.interface';
 import { Subscription } from 'rxjs';
 import { TodoListTypes } from '../../../../common/enums/todo-list-types.enum';
-import { LocalStorageItemsEnum } from '../../../../common/enums/local-storage.enum';
 import { Router } from '@angular/router';
-import { AppCompleteRoutesEnum } from '../../../../shared/routes/app-routes.enum';
 import dayjs from 'dayjs';
+import { LocalStorageItemsEnum } from '../../../../common/enums/local-storage.enum';
+import { ITodoDetail } from '../../interfaces/todo-details.interface';
 
 @Component({
     selector: 'todo-container',
@@ -17,11 +17,8 @@ import dayjs from 'dayjs';
     styleUrl: './todo-view.component.css',
 })
 export class TodoViewComponent {
-    todoList!: ITodoLists;
-    todoListTypes = TodoListTypes;
-    appTodoLists!: IAppTodoLists;
-
-    appTodoListsKeys!: string[];
+    appTodoLists: IAppTodoLists;
+    appTodoListsKeys: string[];
 
     private todoListsSubscription: Subscription;
 
@@ -29,49 +26,43 @@ export class TodoViewComponent {
         private readonly router: Router,
         private readonly todoService: TodoService,
     ) {
-        this.todoList = {
-            todoList: [],
-            trashList: [],
-        };
-
+        // Init variables
         this.appTodoLists = {};
+        this.appTodoListsKeys = [];
 
         this.todoListsSubscription = this.todoService.todoList$.subscribe(
             (items) => {
                 if (items) {
-                    this.todoList.todoList = items?.todoList;
-                    this.todoList.trashList = items?.trashList;
-
-                    const todoLists = items?.todoList;
-
-                    const differentListsDates = [
-                        ...new Set(
-                            todoLists.map((el) =>
-                                dayjs(el.createdAt).format('MM-DD-YYYY'),
+                    Object.values(items).forEach((todoLists) => {
+                        const differentListsDates = [
+                            ...new Set(
+                                todoLists.map((el: ITodoDetail) =>
+                                    dayjs(el.createdAt).format('MM-DD-YYYY'),
+                                ),
                             ),
-                        ),
-                    ];
+                        ];
 
-                    differentListsDates
-                        .sort((a, b) => {
-                            const firstDateSplit = a.split('-');
-                            const secondDateSplit = b.split('-');
+                        differentListsDates
+                            .sort((a: string, b: string) => {
+                                const firstDateSplit = a.split('-');
+                                const secondDateSplit = b.split('-');
 
-                            const aa = `${firstDateSplit[2]}${firstDateSplit[0]}${firstDateSplit[1]}`;
-                            const bb = `${secondDateSplit[2]}${secondDateSplit[0]}${secondDateSplit[1]}`;
+                                const aa = `${firstDateSplit[2]}${firstDateSplit[0]}${firstDateSplit[1]}`;
+                                const bb = `${secondDateSplit[2]}${secondDateSplit[0]}${secondDateSplit[1]}`;
 
-                            return aa < bb ? -1 : aa > bb ? 1 : 0;
-                        })
-                        .forEach((el) => {
-                            this.appTodoLists[`${el}`] = todoLists.filter(
-                                (filterEl) =>
-                                    dayjs(filterEl.createdAt).format(
-                                        'MM-DD-YYYY',
-                                    ) === el,
-                            );
-                        });
+                                return aa < bb ? -1 : aa > bb ? 1 : 0;
+                            })
+                            .forEach((el) => {
+                                this.appTodoLists[`${el}`] = todoLists.filter(
+                                    (filterEl: ITodoDetail) =>
+                                        dayjs(filterEl.createdAt).format(
+                                            'MM-DD-YYYY',
+                                        ) === el,
+                                );
+                            });
 
-                    this.appTodoListsKeys = Object.keys(this.appTodoLists);
+                        this.appTodoListsKeys = Object.keys(this.appTodoLists);
+                    });
                 }
             },
         );
@@ -80,26 +71,18 @@ export class TodoViewComponent {
     @HostListener('window:beforeunload')
     unloadNotification() {
         window.localStorage.setItem(
-            'todo-list',
-            JSON.stringify(this.todoList.todoList),
-        );
-        window.localStorage.setItem(
-            'todo-trash-list',
-            JSON.stringify(this.todoList.trashList),
+            LocalStorageItemsEnum.APP_LISTS,
+            JSON.stringify(this.appTodoLists),
         );
     }
 
     async ngOnInit() {
-        const todoLists = await this.todoService.getTodosFromLocalStorage();
-
-        this.todoList.todoList = todoLists;
+        this.appTodoLists = await this.todoService.getTodosFromLocalStorage();
+        this.todoService.setTodoList(this.appTodoLists);
+        this.appTodoListsKeys = Object.keys(this.appTodoLists);
     }
 
     ngOnDestroy() {
         this.todoListsSubscription.unsubscribe();
     }
-
-    // get description() {
-    //     return this.todosAddForm.get('description');
-    // }
 }

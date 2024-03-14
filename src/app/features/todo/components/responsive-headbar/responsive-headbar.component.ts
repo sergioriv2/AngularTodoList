@@ -6,24 +6,21 @@ import { ISidebarOptions } from '../../interfaces/sidebar-options.interface';
 import { SidebarOptionsEnum } from '../../../../common/enums/sidebar-options.enum';
 
 @Component({
-    selector: 'responsive-sidebar',
-    templateUrl: './responsive-sidebar.component.html',
-    styleUrl: './responsive-sidebar.component.css',
+    selector: 'responsive-headbar',
+    templateUrl: './responsive-headbar.component.html',
+    styleUrl: './responsive-headbar.component.css',
 })
-export class ResponsiveSidebar {
-    userName!: string;
-    sidebarOptions: ISidebarOptions[][];
+export class ResponsiveHeadbar {
+    headbarOptions: ISidebarOptions[][];
 
     constructor(private readonly router: Router) {
         // Init
-        this.sidebarOptions = [];
-        this.initSidebarOptions();
-
-        this.userName = 'Placeholder';
+        this.headbarOptions = [];
+        this.initHeadbarOptions();
     }
 
-    initSidebarOptions(): void {
-        this.sidebarOptions = [
+    initHeadbarOptions(): void {
+        this.headbarOptions = [
             [
                 {
                     name: SidebarOptionsEnum.All,
@@ -53,11 +50,5 @@ export class ResponsiveSidebar {
                 },
             ],
         ];
-    }
-
-    signOut() {
-        localStorage.removeItem(LocalStorageItemsEnum.ACCESS_TOKEN);
-        localStorage.removeItem(LocalStorageItemsEnum.REFRESH_TOKEN);
-        this.router.navigateByUrl(AppCompleteRoutesEnum.AuthRoot);
     }
 }

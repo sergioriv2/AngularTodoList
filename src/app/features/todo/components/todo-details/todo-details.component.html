@@ -1,27 +1,25 @@
-<div class="todo-details-container">
-    <div class="todo-details-body">
-        <div class="todo-details-complete-handler">
-            <span
-                [class]="
-                    todoDetails.isComplete
-                        ? 'complete-handler complete-handler-done'
-                        : 'complete-handler'
-                "
-                (click)="updateTodoOnClick()"
-            >
-                <i
-                    *ngIf="todoDetails.isComplete"
-                    class="fas fa-check complete-handler-check"
-                ></i>
-            </span>
-        </div>
-        <div class="todo-details">
-            <p
-                class="todo-details-description"
-                [ngClass]="{ 'todo-completed': todoDetails.isComplete }"
-            >
-                {{ todoDetails.description }}
-            </p>
-        </div>
+<div class="todo-details-body">
+    <div class="todo-details-complete-handler">
+        <span
+            [class]="
+                todoDetails.isComplete
+                    ? 'complete-handler complete-handler-done'
+                    : 'complete-handler'
+            "
+            (click)="updateTodoOnClick()"
+        >
+            <i
+                *ngIf="todoDetails.isComplete"
+                class="fas fa-check complete-handler-check"
+            ></i>
+        </span>
+    </div>
+    <div class="todo-details">
+        <p
+            class="todo-details-description"
+            [ngClass]="{ 'todo-completed': todoDetails.isComplete }"
+        >
+            {{ todoDetails.description }}
+        </p>
     </div>
 </div>

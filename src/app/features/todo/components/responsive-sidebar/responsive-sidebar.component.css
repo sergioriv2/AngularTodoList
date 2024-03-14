@@ -1,6 +1,5 @@
 :host {
     display: none;
-    position: inherit;
 }
 
 .user-info-image {
@@ -57,12 +56,19 @@
     align-items: center;
 }
 
-.sidebar-content-list li { 
-    margin-bottom: 20px;
-    padding-left: 50px !important;
-    font-size: 16px;
+.sidebar-item a {
+    font-weight: inherit;
     padding-bottom: 5px;
     padding-top: 5px;
+    padding-left: 50px !important;
+    display: inline-block;
+    width: 100%;
+}
+
+.sidebar-content-list li { 
+    margin-bottom: 20px;
+    font-size: 16px;
+
 }
 
 .sidebar-content-list li label { 
@@ -99,6 +105,7 @@
         display: inline-grid;
         width: 250px;
         min-width: 250px;
+        border-right: 1px solid var(--white-shadow);
         /* position: fixed;
         top: 0; */
     }

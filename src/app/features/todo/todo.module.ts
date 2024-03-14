@@ -17,6 +17,11 @@ import { CreateTodoButton } from './components/create-todo-button/create-todo-bu
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { ResponsiveSidebar } from './components/responsive-sidebar/responsive-sidebar.component ';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { AppViewComponenet } from './components/app-view/app-view.component';
+import { TodoCompletedListsView } from './components/todo-completed-lists-view/todo-completed-lists.view';
+import { TodoTrashListView } from './components/todo-trash-list-view/todo-trash-list.view';
+import { ResponsiveHeadbar } from './components/responsive-headbar/responsive-headbar.component';
 
 const SHARED_COMPONENTS = [
     TodoDetailsComponent,
@@ -26,6 +31,10 @@ const SHARED_COMPONENTS = [
     TodoCleanDialogComponent,
     CreateTodoButton,
     ResponsiveSidebar,
+    TodoCompletedListsView,
+    TodoTrashListView,
+    ResponsiveHeadbar,
+    AppViewComponenet,
 ];
 
 @NgModule({
@@ -40,6 +49,9 @@ const SHARED_COMPONENTS = [
         MatDialogModule,
         MatButtonModule,
         MatDatepickerModule,
+        RouterOutlet,
+        RouterLink,
+        RouterLinkActive,
     ],
     exports: [...SHARED_COMPONENTS],
 })
